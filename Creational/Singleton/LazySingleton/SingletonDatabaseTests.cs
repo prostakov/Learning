@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using Moq;
 using NUnit.Framework;
 
 namespace LazySingleton
@@ -21,14 +23,33 @@ namespace LazySingleton
         }
 
         [Test]
-        public void SingletonTotalPopulationTest()
+        public void SingletonRecordFinder_LiveDatabase_Test()
         {
-            // testing on a live database
-            var rf = new SingletonRecordFinder();
+            var recordFinder = new SingletonRecordFinder(SingletonDatabase.Instance);
             var names = new[] { "Seoul", "Mexico City" };
-            int tp = rf.GetTotalPopulation(names);
-            Assert.That(tp, Is.EqualTo(9989795 + 8851080));
+            int totalPopulation = recordFinder.GetTotalPopulation(names);
+            Assert.That(totalPopulation, Is.EqualTo(9989795 + 8851080));
             Assert.That(SingletonDatabase.InstanceCount, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void SingletonRecordFinder_Test()
+        {
+            Dictionary<string, int> populations = new Dictionary<string, int>
+            {
+                {"Seoul", 9989795},
+                {"Mexico City", 8851080},
+            };
+            
+            var databaseMock = new Mock<IDatabase>();
+            foreach (var capital in populations.Keys)
+                databaseMock.Setup(db => db.GetPopulation(capital)).Returns(populations[capital]);
+            
+            var recordFinder = new SingletonRecordFinder(databaseMock.Object);
+            var names = populations.Keys;
+            int totalPopulation = recordFinder.GetTotalPopulation(names);
+
+            Assert.That(totalPopulation, Is.EqualTo(populations.Values.Sum()));
         }
     }
 }

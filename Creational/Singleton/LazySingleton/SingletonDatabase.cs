@@ -40,11 +40,18 @@ namespace LazySingleton
 
     public class SingletonRecordFinder
     {
+        private readonly IDatabase _database;
+
+        public SingletonRecordFinder(IDatabase database)
+        {
+            _database = database ?? throw new ArgumentNullException(nameof(database));
+        }
+
         public int GetTotalPopulation(IEnumerable<string> names)
         {
             int result = 0;
             foreach (var name in names)
-                result += SingletonDatabase.Instance.GetPopulation(name);
+                result += _database.GetPopulation(name);
             return result;
         }
     }

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Autofac;
 using Moq;
 using NUnit.Framework;
 
@@ -25,7 +24,7 @@ namespace LazySingleton
         [Test]
         public void SingletonRecordFinder_LiveDatabase_Test()
         {
-            var recordFinder = new SingletonRecordFinder(SingletonDatabase.Instance);
+            var recordFinder = new RecordFinder(SingletonDatabase.Instance);
             var names = new[] { "Seoul", "Mexico City" };
             int totalPopulation = recordFinder.GetTotalPopulation(names);
             Assert.That(totalPopulation, Is.EqualTo(9989795 + 8851080));
@@ -45,11 +44,30 @@ namespace LazySingleton
             foreach (var capital in populations.Keys)
                 databaseMock.Setup(db => db.GetPopulation(capital)).Returns(populations[capital]);
             
-            var recordFinder = new SingletonRecordFinder(databaseMock.Object);
+            var recordFinder = new RecordFinder(databaseMock.Object);
             var names = populations.Keys;
             int totalPopulation = recordFinder.GetTotalPopulation(names);
 
             Assert.That(totalPopulation, Is.EqualTo(populations.Values.Sum()));
+        }
+
+        [Test]
+        public void DIPopulationTest()
+        {
+            var cb = new ContainerBuilder();
+            cb.RegisterType<OrdinaryDatabase>()
+                .As<IDatabase>()
+                 .SingleInstance();
+            cb.RegisterType<RecordFinder>();
+
+            using (var c = cb.Build())
+            {
+                var recordFinder = c.Resolve<RecordFinder>();
+                var names = new[] { "Seoul", "Mexico City" };
+
+                int totalPopulation = recordFinder.GetTotalPopulation(names);
+                Assert.That(totalPopulation, Is.EqualTo(9989795 + 8851080));
+            }
         }
     }
 }

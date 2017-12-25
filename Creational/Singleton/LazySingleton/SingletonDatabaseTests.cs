@@ -20,15 +20,15 @@ namespace LazySingleton
             Assert.That(SingletonDatabase.InstanceCount, Is.EqualTo(1));
         }
 
-        //[Test]
-        //public void SingletonTotalPopulationTest()
-        //{
-        //    // testing on a live database
-        //    var rf = new SingletonRecordFinder();
-        //    var names = new[] { "Seoul", "Mexico City" };
-        //    int tp = rf.TotalPopulation(names);
-        //    Assert.That(tp, Is.EqualTo(17500000 + 17400000));
-        //    Assert.That(SingletonDatabase.InstanceCount, Is.EqualTo(1));
-        //}
+        [Test]
+        public void SingletonTotalPopulationTest()
+        {
+            // testing on a live database
+            var rf = new SingletonRecordFinder();
+            var names = new[] { "Seoul", "Mexico City" };
+            int tp = rf.GetTotalPopulation(names);
+            Assert.That(tp, Is.EqualTo(9989795 + 8851080));
+            Assert.That(SingletonDatabase.InstanceCount, Is.EqualTo(1));
+        }
     }
 }

@@ -18,7 +18,9 @@ namespace LazySingleton
         private SingletonDatabase()
         {
             _instanceCount++;
-            _population = File.ReadAllLines("capitals.txt")
+            _population = File.ReadAllLines(Path.Combine(
+                    new FileInfo(typeof(IDatabase).Assembly.Location).DirectoryName,
+                    "capitals.txt"))
                 .Batch(2)
                 .ToDictionary(
                     list => list.ElementAt(0).Trim(),
@@ -38,6 +40,12 @@ namespace LazySingleton
 
     public class SingletonRecordFinder
     {
-        
+        public int GetTotalPopulation(IEnumerable<string> names)
+        {
+            int result = 0;
+            foreach (var name in names)
+                result += SingletonDatabase.Instance.GetPopulation(name);
+            return result;
+        }
     }
 }

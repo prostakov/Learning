@@ -9,23 +9,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Creational", "Creational", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Factory", "Factory", "{4ADA340B-AE79-4B8F-90F2-20244D34E7F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactoryMethod", "Creational\Factory\FactoryMethod\FactoryMethod.csproj", "{57EBDD40-57AC-462D-9762-359EC3345EBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactoryMethod", "Patterns\Creational\Factory\FactoryMethod\FactoryMethod.csproj", "{57EBDD40-57AC-462D-9762-359EC3345EBB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractFactory", "Creational\Factory\AbstractFactory\AbstractFactory.csproj", "{400EB722-066B-4037-8AB7-910C6531C0EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractFactory", "Patterns\Creational\Factory\AbstractFactory\AbstractFactory.csproj", "{400EB722-066B-4037-8AB7-910C6531C0EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractFactoryOCP", "Creational\Factory\AbstractFactoryOCP\AbstractFactoryOCP.csproj", "{8329B092-AF6A-4803-BFA9-A8E97D65383C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractFactoryOCP", "Patterns\Creational\Factory\AbstractFactoryOCP\AbstractFactoryOCP.csproj", "{8329B092-AF6A-4803-BFA9-A8E97D65383C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prototype", "Prototype", "{FBB90E9D-DBCB-4C9B-8DEB-9C05172C6211}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepCopy", "Creational\Prototype\DeepCopy\DeepCopy.csproj", "{6A218BAD-4F13-4AF8-9CF1-CED71C25D457}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeepCopy", "Patterns\Creational\Prototype\DeepCopy\DeepCopy.csproj", "{6A218BAD-4F13-4AF8-9CF1-CED71C25D457}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serialization", "Creational\Prototype\Serialization\Serialization.csproj", "{7FCBAC9F-2E03-4984-9339-728DC25838C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serialization", "Patterns\Creational\Prototype\Serialization\Serialization.csproj", "{7FCBAC9F-2E03-4984-9339-728DC25838C6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Singleton", "Singleton", "{BD081CD6-1EB8-4019-B54C-465CD2080BBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazySingleton", "Creational\Singleton\LazySingleton\LazySingleton.csproj", "{A2888D85-178D-4407-97B1-48FE35EE553E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazySingleton", "Patterns\Creational\Singleton\LazySingleton\LazySingleton.csproj", "{A2888D85-178D-4407-97B1-48FE35EE553E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monostate", "Creational\Singleton\Monostate\Monostate.csproj", "{1DB8CDB5-7174-4315-A236-B8460C7B2871}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monostate", "Patterns\Creational\Singleton\Monostate\Monostate.csproj", "{1DB8CDB5-7174-4315-A236-B8460C7B2871}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Patterns", "Patterns", "{1DB80474-A2B5-4C50-8835-8017A426E2FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +82,7 @@ Global
 		{BD081CD6-1EB8-4019-B54C-465CD2080BBE} = {000761D0-17D6-4F41-B6FD-D5B25A6A3614}
 		{A2888D85-178D-4407-97B1-48FE35EE553E} = {BD081CD6-1EB8-4019-B54C-465CD2080BBE}
 		{1DB8CDB5-7174-4315-A236-B8460C7B2871} = {BD081CD6-1EB8-4019-B54C-465CD2080BBE}
+		{000761D0-17D6-4F41-B6FD-D5B25A6A3614} = {1DB80474-A2B5-4C50-8835-8017A426E2FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB5F0BD3-A1A0-4C7C-B708-576B404DD011}

@@ -243,3 +243,5 @@ appsettings.*.json
 node_modules/
 
 wwwroot/
+
+.idea/

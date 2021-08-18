@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monostate", "Patterns\Creat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Patterns", "Patterns", "{1DB80474-A2B5-4C50-8835-8017A426E2FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrefixTree", "PrefixTree\PrefixTree.csproj", "{AA7A47AD-7417-4B56-91BF-3CA64B3FA916}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{1DB8CDB5-7174-4315-A236-B8460C7B2871}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DB8CDB5-7174-4315-A236-B8460C7B2871}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DB8CDB5-7174-4315-A236-B8460C7B2871}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA7A47AD-7417-4B56-91BF-3CA64B3FA916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA7A47AD-7417-4B56-91BF-3CA64B3FA916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA7A47AD-7417-4B56-91BF-3CA64B3FA916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA7A47AD-7417-4B56-91BF-3CA64B3FA916}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,29 +1,66 @@
-using System;
 using System.Collections.Generic;
 
 namespace PrefixTree
 {
-    public class TrieNode
-    {
-        public char Symbol { get; set; }
-        public List<TrieNode> Children { get; set; }
-        public bool IsWord { get; set; }
-    }
-
     public class Trie
     {
-        public Trie(params string[] input)
+        private readonly TrieNode _root = new();
+
+        public Trie(params string[] words)
         {
-            Build(input);
+            Insert(words);
         }
         
-        public void Build(string[] input)
+        public void Insert(params string[] words)
         {
+            foreach (var word in words) 
+                Insert(word);
         }
 
-        public string[] Search(string prefix)
+        private void Insert(string word)
         {
-            return Array.Empty<string>();
+            var current = _root;
+            
+            foreach (var @char in word)
+            {
+                if (!current.Children.ContainsKey(@char))
+                    current.Children[@char] = new TrieNode();
+                
+                current = current.Children[@char];
+            }
+            
+            current.SetWord();
+        }
+
+        public IEnumerable<string> Search(string prefix)
+        {
+            var current = _root;
+            
+            foreach (var @char in prefix)
+            {
+                if (!current.Children.ContainsKey(@char))
+                    return new List<string>();
+                
+                current = current.Children[@char];
+            }
+            
+            return GetWordsFromNode(current, prefix.ToCharArray());
+        }
+
+        private static List<string> GetWordsFromNode(TrieNode current, char[] word)
+        {
+            var result = new List<string>();
+            
+            if (current.IsWord)
+                result.Add(new string(word));
+
+            foreach (var nodeKeyValue in current.Children)
+            {
+                var nodeResult = GetWordsFromNode(nodeKeyValue.Value, word.Append(nodeKeyValue.Key));
+                result.AddRange(nodeResult);
+            }
+            
+            return result;
         }
     }
 }

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using PrefixTree.Extensions;
 
 namespace PrefixTree
 {
@@ -34,6 +36,7 @@ namespace PrefixTree
 
         public IEnumerable<string> Search(string prefix)
         {
+            var result = new HashSet<string>();
             var current = _root;
             
             foreach (var @char in prefix)
@@ -44,23 +47,27 @@ namespace PrefixTree
                 current = current.Children[@char];
             }
             
-            return GetWordsFromNode(current, prefix.ToCharArray());
+            GetWordsFromNode(result, current, prefix.ToCharList());
+
+            return result;
         }
 
-        private static List<string> GetWordsFromNode(TrieNode current, char[] word)
+        private static void GetWordsFromNode(HashSet<string> result, TrieNode current, IList<char> word)
         {
-            var result = new List<string>();
-            
             if (current.IsWord)
-                result.Add(new string(word));
+                result.Add(word.ConvertToString());
 
-            foreach (var nodeKeyValue in current.Children)
+            if (current.Children.Any())
             {
-                var nodeResult = GetWordsFromNode(nodeKeyValue.Value, word.Append(nodeKeyValue.Key));
-                result.AddRange(nodeResult);
+                word.Add(new char());
+                foreach (var nodeKeyValue in current.Children)
+                {
+                    word.RemoveLast();
+                    word.Add(nodeKeyValue.Key);
+                    GetWordsFromNode(result, nodeKeyValue.Value, word);
+                }
+                word.RemoveLast();
             }
-            
-            return result;
         }
     }
 }

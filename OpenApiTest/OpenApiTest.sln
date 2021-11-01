@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenApiTest.DesignFirst", "OpenApiTest.DesignFirst\OpenApiTest.DesignFirst.csproj", "{82D9FED5-FC9D-4D53-94BF-108B44BF1DBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalHouse.DesignFirst", "AnimalHouse.DesignFirst\AnimalHouse.DesignFirst.csproj", "{82D9FED5-FC9D-4D53-94BF-108B44BF1DBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

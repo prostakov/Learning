@@ -1,6 +1,6 @@
 using System;
 
-namespace OpenApiTest.DesignFirst
+namespace AnimalHouse.DesignFirst
 {
     public class WeatherForecast
     {

@@ -12,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace OpenApiTest.DesignFirst
+namespace OpenApiTest.CodeFirst
 {
     public class Startup
     {
@@ -29,7 +29,7 @@ namespace OpenApiTest.DesignFirst
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "OpenApiTest.DesignFirst", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "OpenApiTest.CodeFirst", Version = "v1"});
             });
         }
 
@@ -40,7 +40,7 @@ namespace OpenApiTest.DesignFirst
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OpenApiTest.DesignFirst v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OpenApiTest.CodeFirst v1"));
             }
 
             app.UseHttpsRedirection();

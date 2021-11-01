@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace OpenApiTest.DesignFirst.Controllers
+namespace OpenApiTest.CodeFirst.Controllers
 {
     [ApiController]
     [Route("[controller]")]

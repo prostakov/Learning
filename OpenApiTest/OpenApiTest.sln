@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalHouse.DesignFirst", "AnimalHouse.DesignFirst\AnimalHouse.DesignFirst.csproj", "{82D9FED5-FC9D-4D53-94BF-108B44BF1DBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalHouse.CodeFirst", "AnimalHouse.CodeFirst\AnimalHouse.CodeFirst.csproj", "{4EEAC399-F636-4195-A02D-FAF2AC905F6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{82D9FED5-FC9D-4D53-94BF-108B44BF1DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82D9FED5-FC9D-4D53-94BF-108B44BF1DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82D9FED5-FC9D-4D53-94BF-108B44BF1DBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EEAC399-F636-4195-A02D-FAF2AC905F6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EEAC399-F636-4195-A02D-FAF2AC905F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EEAC399-F636-4195-A02D-FAF2AC905F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EEAC399-F636-4195-A02D-FAF2AC905F6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

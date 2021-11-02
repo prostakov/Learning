@@ -1,0 +1,75 @@
+openapi: 3.0.1
+info:
+  title: AnimalHouse.CodeFirst
+  description: A simple example ASP.NET Core Web API
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Serhii Prostakov
+    url: https://twitter.com/prostakov
+    email: serhii.prostakov@propellminds.ai
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: v1
+paths:
+  '/animals/{id}':
+    get:
+      tags:
+        - Animals
+      summary: Finds Pets by tags
+      description: 'Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
+      parameters:
+        - name: tags
+          in: query
+          description: Tags to filter by
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Animal'
+        '400':
+          description: Invalid tag value
+components:
+  schemas:
+    Animal:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        type:
+          $ref: '#/components/schemas/AnimalType'
+        name:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    AnimalType:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+      type: integer
+      format: int32

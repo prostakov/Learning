@@ -2,10 +2,27 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.2.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.2.3" />
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AnimalHouse.Common\AnimalHouse.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Generated" />
+    </ItemGroup>
+
+    <Target Name="OpenAPI" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
+        <Exec Command="dotnet swagger tofile --output ./Generated/open-api.yaml --yaml $(OutputPath)$(AssemblyName).dll v1" WorkingDirectory="$(ProjectDir)" />
+        <Exec Command="dotnet swagger tofile --output ./Generated/open-api.json $(OutputPath)$(AssemblyName).dll v1" WorkingDirectory="$(ProjectDir)" />
+    </Target>
 
 </Project>

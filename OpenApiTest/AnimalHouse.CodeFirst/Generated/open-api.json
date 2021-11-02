@@ -64,6 +64,53 @@
           }
         }
       }
+    },
+    "/animals": {
+      "post": {
+        "tags": [
+          "Animals"
+        ],
+        "summary": "Create animal",
+        "description": "Animals can be created.",
+        "requestBody": {
+          "description": "Animal to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Animal"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Animal"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Animal"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Animal"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid tag value"
+          }
+        }
+      }
     }
   },
   "components": {

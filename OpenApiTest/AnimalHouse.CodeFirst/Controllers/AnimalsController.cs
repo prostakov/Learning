@@ -24,9 +24,6 @@ namespace AnimalHouse.CodeFirst.Controllers
         /// <param name="tags">Tags to filter by</param>
         /// <response code="200">successful operation</response>
         /// <response code="400">Invalid tag value</response>
-        /// <callbacks>
-        /// <callback>vendorNew</callback>
-        /// </callbacks>
         [Produces("application/json")]
         [HttpGet, Route("{id}")]
         [SwaggerOperation("FindAnimalsByTags")]
@@ -35,6 +32,23 @@ namespace AnimalHouse.CodeFirst.Controllers
         {
             var animals = await _repository.GetAll();
             return new ObjectResult(animals);
+        }
+        
+        /// <summary>
+        /// Create animal
+        /// </summary>
+        /// <remarks>Animals can be created.</remarks>
+        /// <param name="animal">Animal to create</param>
+        /// <response code="200">successful operation</response>
+        /// <response code="400">Invalid tag value</response>
+        [Produces("application/json")]
+        [HttpPost]
+        [SwaggerOperation("CreateNewAnimal")]
+        [SwaggerResponse(statusCode: 201, type: typeof(Animal), description: "successful operation")]
+        public virtual async Task<IActionResult> Create([FromBody] Animal animal)
+        {
+            var createdAnimal = await _repository.Create(animal);
+            return new CreatedResult(createdAnimal.Id.ToString(), createdAnimal);
         }
     }
 }

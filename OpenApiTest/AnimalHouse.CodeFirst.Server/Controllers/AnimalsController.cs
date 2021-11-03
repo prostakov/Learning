@@ -5,7 +5,7 @@ using AnimalHouse.Common;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace AnimalHouse.CodeFirst.Controllers
+namespace AnimalHouse.CodeFirst.Server.Controllers
 {
     [Route("/animals")]
     public class AnimalsController : ControllerBase

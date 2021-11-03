@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalHouse.DesignFirst", "AnimalHouse.DesignFirst\AnimalHouse.DesignFirst.csproj", "{82D9FED5-FC9D-4D53-94BF-108B44BF1DBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalHouse.CodeFirst", "AnimalHouse.CodeFirst\AnimalHouse.CodeFirst.csproj", "{4EEAC399-F636-4195-A02D-FAF2AC905F6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalHouse.CodeFirst.Server", "AnimalHouse.CodeFirst.Server\AnimalHouse.CodeFirst.Server.csproj", "{4EEAC399-F636-4195-A02D-FAF2AC905F6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalHouse.Common", "AnimalHouse.Common\AnimalHouse.Common.csproj", "{2C7F7A81-B520-48B9-8DDF-D2BC1678FAD3}"
 EndProject

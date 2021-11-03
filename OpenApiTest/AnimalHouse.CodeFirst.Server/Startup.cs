@@ -15,7 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace AnimalHouse.CodeFirst
+namespace AnimalHouse.CodeFirst.Server
 {
     public class Startup
     {
@@ -35,7 +35,7 @@ namespace AnimalHouse.CodeFirst
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "AnimalHouse.CodeFirst",
+                    Title = "AnimalHouse.CodeFirst.Server",
                     Description = "A simple example ASP.NET Core Web API",
                     TermsOfService = new Uri("http://swagger.io/terms/"),
                     Contact = new OpenApiContact
@@ -67,7 +67,7 @@ namespace AnimalHouse.CodeFirst
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AnimalHouse.CodeFirst v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AnimalHouse.CodeFirst.Server v1"));
             }
 
             app.UseHttpsRedirection();

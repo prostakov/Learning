@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: AnimalHouse.CodeFirst
+  title: AnimalHouse.CodeFirst.Server
   description: A simple example ASP.NET Core Web API
   termsOfService: http://swagger.io/terms/
   contact:

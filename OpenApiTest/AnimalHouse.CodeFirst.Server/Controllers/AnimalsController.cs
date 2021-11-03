@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using AnimalHouse.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace AnimalHouse.CodeFirst.Server.Controllers
 {
+    [Authorize]
     [Route("/animals")]
+    [ApiController]
     public class AnimalsController : ControllerBase
     {
         private readonly IAnimalRepository _repository;
@@ -15,6 +18,22 @@ namespace AnimalHouse.CodeFirst.Server.Controllers
         public AnimalsController(IAnimalRepository repository)
         {
             _repository = repository;
+        }
+        
+        /// <summary>
+        /// Get all animals
+        /// </summary>
+        /// <remarks>Gets all animals that are currently in storage</remarks>
+        /// <response code="200">successful operation</response>
+        /// <response code="400">Invalid tag value</response>
+        [Produces("application/json")]
+        [HttpGet]
+        [SwaggerOperation("GetAllAnimals")]
+        [SwaggerResponse(statusCode: 200, type: typeof(List<Animal>), description: "successful operation")]
+        public virtual async Task<IActionResult> GetAll()
+        {
+            var animals = await _repository.GetAll();
+            return new ObjectResult(animals);
         }
 
         /// <summary>

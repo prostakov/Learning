@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace AnimalHouse.DesignFirst
+namespace AnimalHouse.DesignFirst.Server
 {
     public class Program
     {

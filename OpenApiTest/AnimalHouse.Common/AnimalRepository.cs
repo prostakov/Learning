@@ -8,6 +8,11 @@ namespace AnimalHouse.Common
     public class AnimalRepository : IAnimalRepository
     {
         private readonly IDictionary<Guid, Animal> _animals = new Dictionary<Guid, Animal>();
+
+        public AnimalRepository()
+        {
+            _animals = AnimalsFixture.List.ToDictionary(x => x.Id, x => x);
+        }
         
         public async Task<Animal[]> GetAll()
         {

@@ -2,7 +2,7 @@ using System;
 
 namespace AnimalHouse.Common
 {
-    public class Animal
+    public abstract class Animal
     {
         public Guid Id { get; set; }
 

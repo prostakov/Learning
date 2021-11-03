@@ -40,7 +40,11 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Animal'
+                  oneOf:
+                    - $ref: '#/components/schemas/Bird'
+                    - $ref: '#/components/schemas/Fish'
+                    - $ref: '#/components/schemas/Mammal'
+                    - $ref: '#/components/schemas/Reptile'
         '400':
           description: Invalid tag value
   /animals:
@@ -54,20 +58,36 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Animal'
+              oneOf:
+                - $ref: '#/components/schemas/Bird'
+                - $ref: '#/components/schemas/Fish'
+                - $ref: '#/components/schemas/Mammal'
+                - $ref: '#/components/schemas/Reptile'
           text/json:
             schema:
-              $ref: '#/components/schemas/Animal'
+              oneOf:
+                - $ref: '#/components/schemas/Bird'
+                - $ref: '#/components/schemas/Fish'
+                - $ref: '#/components/schemas/Mammal'
+                - $ref: '#/components/schemas/Reptile'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/Animal'
+              oneOf:
+                - $ref: '#/components/schemas/Bird'
+                - $ref: '#/components/schemas/Fish'
+                - $ref: '#/components/schemas/Mammal'
+                - $ref: '#/components/schemas/Reptile'
       responses:
         '201':
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Animal'
+                oneOf:
+                  - $ref: '#/components/schemas/Bird'
+                  - $ref: '#/components/schemas/Fish'
+                  - $ref: '#/components/schemas/Mammal'
+                  - $ref: '#/components/schemas/Reptile'
         '200':
           description: successful operation
         '400':
@@ -78,10 +98,8 @@ components:
       type: object
       properties:
         id:
-          type: integer
-          format: int32
-        type:
-          $ref: '#/components/schemas/AnimalType'
+          type: string
+          format: uuid
         name:
           type: string
           nullable: true
@@ -94,11 +112,59 @@ components:
             type: string
           nullable: true
       additionalProperties: false
-    AnimalType:
+    Bird:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Animal'
+      properties:
+        birdType:
+          $ref: '#/components/schemas/BirdType'
+      additionalProperties: false
+    BirdType:
       enum:
-        - 0
-        - 1
-        - 2
-        - 3
-      type: integer
-      format: int32
+        - None
+        - Parrot
+        - Peacock
+      type: string
+    Fish:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Animal'
+      properties:
+        fishType:
+          $ref: '#/components/schemas/FishType'
+      additionalProperties: false
+    FishType:
+      enum:
+        - None
+        - SwordFish
+        - ClownFish
+      type: string
+    Mammal:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Animal'
+      properties:
+        mammalType:
+          $ref: '#/components/schemas/MammalType'
+      additionalProperties: false
+    MammalType:
+      enum:
+        - None
+        - Cat
+        - Dog
+      type: string
+    Reptile:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Animal'
+      properties:
+        reptileType:
+          $ref: '#/components/schemas/ReptileType'
+      additionalProperties: false
+    ReptileType:
+      enum:
+        - None
+        - Lizard
+        - Turtle
+      type: string

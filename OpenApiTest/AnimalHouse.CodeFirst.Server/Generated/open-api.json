@@ -53,7 +53,20 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Animal"
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/Bird"
+                      },
+                      {
+                        "$ref": "#/components/schemas/Fish"
+                      },
+                      {
+                        "$ref": "#/components/schemas/Mammal"
+                      },
+                      {
+                        "$ref": "#/components/schemas/Reptile"
+                      }
+                    ]
                   }
                 }
               }
@@ -77,17 +90,56 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Animal"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Bird"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Fish"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Mammal"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Reptile"
+                  }
+                ]
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Animal"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Bird"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Fish"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Mammal"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Reptile"
+                  }
+                ]
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Animal"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Bird"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Fish"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Mammal"
+                  },
+                  {
+                    "$ref": "#/components/schemas/Reptile"
+                  }
+                ]
               }
             }
           }
@@ -98,7 +150,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Animal"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Bird"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Fish"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Mammal"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Reptile"
+                    }
+                  ]
                 }
               }
             }
@@ -119,11 +184,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "type": {
-            "$ref": "#/components/schemas/AnimalType"
+            "type": "string",
+            "format": "uuid"
           },
           "name": {
             "type": "string",
@@ -143,15 +205,93 @@
         },
         "additionalProperties": false
       },
-      "AnimalType": {
-        "enum": [
-          0,
-          1,
-          2,
-          3
+      "Bird": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Animal"
+          }
         ],
-        "type": "integer",
-        "format": "int32"
+        "properties": {
+          "birdType": {
+            "$ref": "#/components/schemas/BirdType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BirdType": {
+        "enum": [
+          "None",
+          "Parrot",
+          "Peacock"
+        ],
+        "type": "string"
+      },
+      "Fish": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Animal"
+          }
+        ],
+        "properties": {
+          "fishType": {
+            "$ref": "#/components/schemas/FishType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FishType": {
+        "enum": [
+          "None",
+          "SwordFish",
+          "ClownFish"
+        ],
+        "type": "string"
+      },
+      "Mammal": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Animal"
+          }
+        ],
+        "properties": {
+          "mammalType": {
+            "$ref": "#/components/schemas/MammalType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MammalType": {
+        "enum": [
+          "None",
+          "Cat",
+          "Dog"
+        ],
+        "type": "string"
+      },
+      "Reptile": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Animal"
+          }
+        ],
+        "properties": {
+          "reptileType": {
+            "$ref": "#/components/schemas/ReptileType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReptileType": {
+        "enum": [
+          "None",
+          "Lizard",
+          "Turtle"
+        ],
+        "type": "string"
       }
     }
   }

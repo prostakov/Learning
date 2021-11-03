@@ -5,12 +5,26 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="NSwag.CodeGeneration.CSharp" Version="13.13.2" />
+        <PackageReference Include="NSwag.MSBuild" Version="13.13.2">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.0.0-rc4" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AnimalHouse.Common\AnimalHouse.Common.csproj" />
+        <ProjectReference Include="..\AnimalHouse.Common\AnimalHouse.Common.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers" />
+    </ItemGroup>
+
+    <Target Name="GenerateControllerFromOpenApiDocument" BeforeTargets="BeforeBuild">
+        <!-- Docs @ https://github.com/RicoSuter/NSwag/wiki/CommandLine#client-generators -->
+        <Exec Command="$(NSwagExe_Net50) openapi2cscontroller /input:open-api.json /classname:MYController /namespace:web /usebaseurl:false /output:Controllers\Controller.cs /AspNetNamespace:Microsoft.AspNetCore.Mvc /ControllerBaseClass:Microsoft.AspNetCore.Mvc.Controller" />
+    </Target>
 
 </Project>

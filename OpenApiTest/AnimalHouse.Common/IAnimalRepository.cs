@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 
 namespace AnimalHouse.Common
@@ -6,12 +7,12 @@ namespace AnimalHouse.Common
     {
         Task<Animal[]> GetAll();
         
-        Task<Animal?> Get(int id);
+        Task<Animal?> Get(Guid id);
         
         Task<Animal> Create(Animal animal);
         
         Task<Animal> Update(Animal animal);
 
-        Task Delete(int id);
+        Task Delete(Guid id);
     }
 }

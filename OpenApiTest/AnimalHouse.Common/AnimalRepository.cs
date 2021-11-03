@@ -7,7 +7,7 @@ namespace AnimalHouse.Common
 {
     public class AnimalRepository : IAnimalRepository
     {
-        private readonly IDictionary<int, Animal> _animals = new Dictionary<int, Animal>();
+        private readonly IDictionary<Guid, Animal> _animals = new Dictionary<Guid, Animal>();
         
         public async Task<Animal[]> GetAll()
         {
@@ -15,7 +15,7 @@ namespace AnimalHouse.Common
             return _animals.Values.ToArray();
         }
 
-        public async Task<Animal?> Get(int id)
+        public async Task<Animal?> Get(Guid id)
         {
             await Task.Delay(1);
             return _animals.TryGetValue(id, out var result) ? result : null;
@@ -45,7 +45,7 @@ namespace AnimalHouse.Common
             return animal;
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(Guid id)
         {
             await Task.Delay(1);
 

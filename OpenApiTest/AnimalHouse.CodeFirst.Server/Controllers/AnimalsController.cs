@@ -76,5 +76,24 @@ namespace AnimalHouse.CodeFirst.Server.Controllers
             var createdAnimal = await _repository.Create(animal);
             return new CreatedResult(createdAnimal.Id.ToString(), createdAnimal);
         }
+        
+        /// <summary>
+        /// Update animal
+        /// </summary>
+        /// <remarks>Animals can be updated</remarks>
+        /// <param name="animal">Animal to update</param>
+        /// <response code="204">Successful operation</response>
+        /// <response code="400">Request error</response>
+        [HttpPut]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        [SwaggerOperation("CreateNewAnimal")]
+        [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(Animal))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorApiResponse))]
+        public async Task<IActionResult> Update([FromBody] Animal animal)
+        {
+            var createdAnimal = await _repository.Update(animal);
+            return new CreatedResult(createdAnimal.Id.ToString(), createdAnimal);
+        }
     }
 }

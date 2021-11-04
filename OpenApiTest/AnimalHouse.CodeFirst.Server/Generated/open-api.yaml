@@ -65,6 +65,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorApiResponse'
+    put:
+      tags:
+        - Animals
+      summary: Update animal
+      description: Animals can be updated
+      requestBody:
+        description: Animal to update
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/Bird'
+                - $ref: '#/components/schemas/Fish'
+                - $ref: '#/components/schemas/Mammal'
+                - $ref: '#/components/schemas/Reptile'
+      responses:
+        '204':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Bird'
+                  - $ref: '#/components/schemas/Fish'
+                  - $ref: '#/components/schemas/Mammal'
+                  - $ref: '#/components/schemas/Reptile'
+        '400':
+          description: Request error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
   /animals/tags:
     get:
       tags:

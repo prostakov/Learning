@@ -1,14 +1,14 @@
 using System;
-using AnimalHouse.Common.Animals;
+using AnimalHouse.Common.Models.Animals;
 using NJsonSchema.Converters;
 
-namespace AnimalHouse.Common
+namespace AnimalHouse.Common.Models
 {
     [Newtonsoft.Json.JsonConverter(typeof(JsonInheritanceConverter), "discriminator")]
-    [JsonInheritanceAttribute(nameof(Bird), typeof(Bird))]
-    [JsonInheritanceAttribute(nameof(Fish), typeof(Fish))]
-    [JsonInheritanceAttribute(nameof(Mammal), typeof(Mammal))]
-    [JsonInheritanceAttribute(nameof(Reptile), typeof(Reptile))]
+    [JsonInheritance(nameof(Bird), typeof(Bird))]
+    [JsonInheritance(nameof(Fish), typeof(Fish))]
+    [JsonInheritance(nameof(Mammal), typeof(Mammal))]
+    [JsonInheritance(nameof(Reptile), typeof(Reptile))]
     public abstract class Animal
     {
         public Guid Id { get; set; }

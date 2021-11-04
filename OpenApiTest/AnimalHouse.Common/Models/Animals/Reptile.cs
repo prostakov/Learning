@@ -1,4 +1,4 @@
-namespace AnimalHouse.Common.Animals
+namespace AnimalHouse.Common.Models.Animals
 {
     public class Reptile : Animal
     {

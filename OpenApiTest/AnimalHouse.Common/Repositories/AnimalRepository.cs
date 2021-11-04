@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnimalHouse.Common.Fixtures;
+using AnimalHouse.Common.Models;
 
-namespace AnimalHouse.Common
+namespace AnimalHouse.Common.Repositories
 {
     public class AnimalRepository : IAnimalRepository
     {

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AnimalHouse.Common.Models;
 
-namespace AnimalHouse.Common
+namespace AnimalHouse.Common.Repositories
 {
     public interface IAnimalRepository
     {

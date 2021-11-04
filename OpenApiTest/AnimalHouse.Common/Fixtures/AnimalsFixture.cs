@@ -1,7 +1,8 @@
 using System;
-using AnimalHouse.Common.Animals;
+using AnimalHouse.Common.Models;
+using AnimalHouse.Common.Models.Animals;
 
-namespace AnimalHouse.Common
+namespace AnimalHouse.Common.Fixtures
 {
     public static class AnimalsFixture
     {

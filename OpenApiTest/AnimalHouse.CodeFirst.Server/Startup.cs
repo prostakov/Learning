@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
-using System.Text.Json.Serialization;
 using AnimalHouse.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
 
 namespace AnimalHouse.CodeFirst.Server
 {
@@ -59,9 +59,9 @@ namespace AnimalHouse.CodeFirst.Server
             // });
 
             services.AddControllers()
-                    .AddJsonOptions(options => 
-                    { 
-                        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); 
+                    .AddNewtonsoftJson(options =>
+                    {
+                        options.SerializerSettings.Converters.Add(new StringEnumConverter());
                     });
             
             services.AddSwaggerGen(c =>

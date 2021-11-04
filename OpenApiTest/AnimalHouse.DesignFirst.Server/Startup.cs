@@ -1,4 +1,5 @@
 using AnimalHouse.Common;
+using AnimalHouse.DesignFirst.Server.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +37,7 @@ namespace AnimalHouse.DesignFirst.Server
             });
 
             services.RegisterRepositories();
+            services.AddTransient<IApiController, ApiControllerImplementation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

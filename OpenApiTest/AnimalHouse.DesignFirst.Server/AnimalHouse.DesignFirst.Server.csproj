@@ -18,13 +18,8 @@
         <ProjectReference Include="..\AnimalHouse.Common\AnimalHouse.Common.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Controllers" />
-    </ItemGroup>
-
     <Target Name="GenerateControllerFromOpenApiDocument" BeforeTargets="BeforeBuild">
-        <!-- Docs @ https://github.com/RicoSuter/NSwag/wiki/CommandLine#client-generators -->
-        <Exec Command="$(NSwagExe_Net50) openapi2cscontroller /input:open-api.json /classname:MYController /namespace:web /usebaseurl:false /output:Controllers\Controller.cs /AspNetNamespace:Microsoft.AspNetCore.Mvc /ControllerBaseClass:Microsoft.AspNetCore.Mvc.Controller" />
+        <Exec Command="$(NSwagExe_Net50) openapi2cscontroller /input:open-api.yaml /classname:MYController /namespace:web /usebaseurl:false /output:Controllers\Controller.cs /AspNetNamespace:Microsoft.AspNetCore.Mvc /ControllerBaseClass:Microsoft.AspNetCore.Mvc.Controller" />
     </Target>
 
 </Project>

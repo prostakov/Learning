@@ -37,7 +37,7 @@ paths:
       tags:
         - Animals
       summary: Create animal
-      description: Animals can be created.
+      description: Animals can be created
       requestBody:
         description: Animal to create
         content:
@@ -48,23 +48,9 @@ paths:
                 - $ref: '#/components/schemas/Fish'
                 - $ref: '#/components/schemas/Mammal'
                 - $ref: '#/components/schemas/Reptile'
-          text/json:
-            schema:
-              oneOf:
-                - $ref: '#/components/schemas/Bird'
-                - $ref: '#/components/schemas/Fish'
-                - $ref: '#/components/schemas/Mammal'
-                - $ref: '#/components/schemas/Reptile'
-          application/*+json:
-            schema:
-              oneOf:
-                - $ref: '#/components/schemas/Bird'
-                - $ref: '#/components/schemas/Fish'
-                - $ref: '#/components/schemas/Mammal'
-                - $ref: '#/components/schemas/Reptile'
       responses:
         '201':
-          description: Success
+          description: Successful operation
           content:
             application/json:
               schema:
@@ -73,15 +59,17 @@ paths:
                   - $ref: '#/components/schemas/Fish'
                   - $ref: '#/components/schemas/Mammal'
                   - $ref: '#/components/schemas/Reptile'
-        '200':
-          description: successful operation
         '400':
-          description: Invalid tag value
-  '/animals/{id}':
+          description: Request error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+  /animals/tags:
     get:
       tags:
         - Animals
-      summary: Finds Pets by tags
+      summary: Finds animals by tags
       description: 'Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
       parameters:
         - name: tags
@@ -92,14 +80,9 @@ paths:
             type: array
             items:
               type: string
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
       responses:
         '200':
-          description: successful operation
+          description: Successful operation
           content:
             application/json:
               schema:
@@ -112,6 +95,10 @@ paths:
                     - $ref: '#/components/schemas/Reptile'
         '400':
           description: Invalid tag value
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
 components:
   schemas:
     Animal:
@@ -142,10 +129,26 @@ components:
       additionalProperties: false
     BirdType:
       enum:
-        - None
-        - Parrot
-        - Peacock
-      type: string
+        - 0
+        - 1
+        - 2
+      type: integer
+      format: int32
+    ErrorApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+      additionalProperties: false
     Fish:
       type: object
       allOf:
@@ -156,10 +159,11 @@ components:
       additionalProperties: false
     FishType:
       enum:
-        - None
-        - SwordFish
-        - ClownFish
-      type: string
+        - 0
+        - 1
+        - 2
+      type: integer
+      format: int32
     Mammal:
       type: object
       allOf:
@@ -170,10 +174,11 @@ components:
       additionalProperties: false
     MammalType:
       enum:
-        - None
-        - Cat
-        - Dog
-      type: string
+        - 0
+        - 1
+        - 2
+      type: integer
+      format: int32
     Reptile:
       type: object
       allOf:
@@ -184,10 +189,11 @@ components:
       additionalProperties: false
     ReptileType:
       enum:
-        - None
-        - Lizard
-        - Turtle
-      type: string
+        - 0
+        - 1
+        - 2
+      type: integer
+      format: int32
   securitySchemes:
     Bearer:
       type: http

@@ -92,8 +92,8 @@ namespace AnimalHouse.CodeFirst.Server.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorApiResponse))]
         public async Task<IActionResult> Update([FromBody] Animal animal)
         {
-            var createdAnimal = await _repository.Update(animal);
-            return new CreatedResult(createdAnimal.Id.ToString(), createdAnimal);
+            var updatedAnimal = await _repository.Update(animal);
+            return new CreatedResult(updatedAnimal.Id.ToString(), updatedAnimal);
         }
     }
 }

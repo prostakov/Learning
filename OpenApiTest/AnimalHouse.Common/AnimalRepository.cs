@@ -7,7 +7,7 @@ namespace AnimalHouse.Common
 {
     public class AnimalRepository : IAnimalRepository
     {
-        private readonly IDictionary<Guid, Animal> _animals = new Dictionary<Guid, Animal>();
+        private readonly IDictionary<Guid, Animal> _animals;
 
         public AnimalRepository()
         {
@@ -16,20 +16,21 @@ namespace AnimalHouse.Common
         
         public async Task<Animal[]> GetAll()
         {
-            await Task.Delay(1);
             return _animals.Values.ToArray();
+        }
+
+        public async Task<Animal[]> GetByTags(List<string> tags)
+        {
+            return _animals.Values.Where(x => x.Tags?.Any(tags.Contains) ?? false).ToArray();
         }
 
         public async Task<Animal?> Get(Guid id)
         {
-            await Task.Delay(1);
             return _animals.TryGetValue(id, out var result) ? result : null;
         }
 
         public async Task<Animal> Create(Animal animal)
         {
-            await Task.Delay(1);
-
             if (_animals.ContainsKey(animal.Id))
                 throw new ArgumentException($"Animal with id {animal.Id} already exists");
             
@@ -40,8 +41,6 @@ namespace AnimalHouse.Common
 
         public async Task<Animal> Update(Animal animal)
         {
-            await Task.Delay(1);
-
             if (!_animals.ContainsKey(animal.Id))
                 throw new ArgumentException($"Animal with id {animal.Id} does not exists");
 
@@ -52,8 +51,6 @@ namespace AnimalHouse.Common
 
         public async Task Delete(Guid id)
         {
-            await Task.Delay(1);
-
             if (!_animals.ContainsKey(id))
                 throw new ArgumentException($"Animal with id {id} does not exists");
 

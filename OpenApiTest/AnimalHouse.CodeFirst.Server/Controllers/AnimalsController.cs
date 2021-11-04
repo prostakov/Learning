@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
@@ -84,16 +85,37 @@ namespace AnimalHouse.CodeFirst.Server.Controllers
         /// <param name="animal">Animal to update</param>
         /// <response code="204">Successful operation</response>
         /// <response code="400">Request error</response>
+        /// <response code="404">Not found error</response>
         [HttpPut]
         [Consumes("application/json")]
         [Produces("application/json")]
-        [SwaggerOperation("CreateNewAnimal")]
+        [SwaggerOperation("UpdateAnimal")]
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(Animal))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorApiResponse))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<IActionResult> Update([FromBody] Animal animal)
         {
             var updatedAnimal = await _repository.Update(animal);
             return new CreatedResult(updatedAnimal.Id.ToString(), updatedAnimal);
+        }
+        
+        /// <summary>
+        /// Delete animal
+        /// </summary>
+        /// <remarks>Animals can be deleted</remarks>
+        /// <param name="id">Id of animal to delete</param>
+        /// <response code="204">Successful operation</response>
+        /// <response code="400">Request error</response>
+        /// <response code="404">Not found error</response>
+        [HttpDelete, Route("{id}")]
+        [SwaggerOperation("DeleteAnimal")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorApiResponse))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        public async Task<IActionResult> Delete([FromQuery] Guid id)
+        {
+            await _repository.Delete(id);
+            return new NoContentResult();
         }
     }
 }

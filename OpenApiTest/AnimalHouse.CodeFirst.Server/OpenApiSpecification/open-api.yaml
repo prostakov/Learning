@@ -97,6 +97,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorApiResponse'
+        '404':
+          description: Not found error
+          content:
+            application/json:
+              schema:
+                type: string
   /animals/tags:
     get:
       tags:
@@ -131,6 +137,51 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorApiResponse'
+  '/animals/{id}':
+    delete:
+      tags:
+        - Animals
+      summary: Delete animal
+      description: Animals can be deleted
+      parameters:
+        - name: id
+          in: query
+          description: Id of animal to delete
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Successful operation
+        '400':
+          description: Request error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorApiResponse'
+        '404':
+          description: Not found error
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
 components:
   schemas:
     Animal:

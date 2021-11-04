@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using AnimalHouse.Common;
+using AnimalHouse.Common.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

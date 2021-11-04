@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using AnimalHouse.CodeFirst.Server.Responses;
 using AnimalHouse.Common;
+using AnimalHouse.Common.Models;
+using AnimalHouse.Common.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

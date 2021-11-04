@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AnimalHouse.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace AnimalHouse.DesignFirst.Server
@@ -27,13 +20,22 @@ namespace AnimalHouse.DesignFirst.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.RegisterAuthentication();
+            services.RegisterAuthorization();
+
             services.AddControllers();
+                    // TODO
+                    // .AddNewtonsoftJson(options =>
+                    // {
+                    //     options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                    // });
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "AnimalHouse.DesignFirst.Server", Version = "v1"});
             });
 
-            services.AddSingleton<IAnimalRepository, AnimalRepository>();
+            services.RegisterRepositories();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,9 +52,14 @@ namespace AnimalHouse.DesignFirst.Server
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                //.RequireAuthorization("ApiScope");
+            });
         }
     }
 }

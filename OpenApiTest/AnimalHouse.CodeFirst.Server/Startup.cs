@@ -29,35 +29,8 @@ namespace AnimalHouse.CodeFirst.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(options =>
-                {
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = false,
-                        RequireExpirationTime = false,
-                        ValidIssuer = "Serhii Prostakov",
-                        ValidAudience = "Serhii Prostakov",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("af5b8f5e-ffd3-4bc2-84df-e027a0432974")),
-                        ClockSkew = TimeSpan.Zero
-                    };
-                });
-            
-            // services.AddAuthorization(options =>
-            // {
-            //     options.AddPolicy("ApiScope", policy =>
-            //     {
-            //         policy.RequireAuthenticatedUser();
-            //         policy.RequireClaim("scope", "pai-api");
-            //     });
-            // });
+            services.RegisterAuthentication();
+            services.RegisterAuthorization();
 
             services.AddControllers()
                     .AddNewtonsoftJson(options =>
@@ -113,7 +86,7 @@ namespace AnimalHouse.CodeFirst.Server
                 c.IncludeXmlComments(xmlPath);
             });
             
-            services.AddSingleton<IAnimalRepository, AnimalRepository>();
+            services.RegisterRepositories();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

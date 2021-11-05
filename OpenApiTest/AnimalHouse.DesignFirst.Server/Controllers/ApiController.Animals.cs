@@ -4,11 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AnimalHouse.Common.Repositories;
 using AnimalHouse.DesignFirst.Server.Converters;
-using Microsoft.AspNetCore.Authorization;
 
 namespace AnimalHouse.DesignFirst.Server.Controllers
 {
-    [Authorize]
     public partial class ApiController
     {
         private readonly IAnimalRepository _animalRepository;

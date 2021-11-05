@@ -37,7 +37,6 @@ namespace AnimalHouse.DesignFirst.Server
             });
 
             services.RegisterRepositories();
-            services.AddTransient<IApiController, ApiControllerImplementation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

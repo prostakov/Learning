@@ -17,48 +17,12 @@ namespace AnimalHouse.DesignFirst.Server.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.13.2.0 (NJsonSchema v10.5.2.0 (Newtonsoft.Json v12.0.0.0))")]
-    public interface IApiController
+    public abstract class ApiControllerBase : Microsoft.AspNetCore.Mvc.Controller
     {
-        /// <summary>Health check</summary>
-        /// <returns>Successful health check response</returns>
-        System.Threading.Tasks.Task<HealthCheck> HealthCheckAsync();
-    
-        /// <summary>List all accounts</summary>
-        /// <param name="limit">How many items to return at one time (max 100) (default 100)</param>
-        /// <param name="cursor">Which item to start from</param>
-        /// <param name="since">Datetime value for incremental updates. NB: for external datetimes, the expected format is not in UTC. for vic-internal datetimes (see SinceIsExternal) the format is UTC.</param>
-        /// <param name="useSystem">what system should be used for id or updatedAt filters.</param>
-        /// <param name="sortOrder">what sort order should be used for queries</param>
-        /// <returns>A paged array of accounts</returns>
-        System.Threading.Tasks.Task<SubscriptionUpsert> ListAccountsAsync(int? limit, string cursor, System.DateTimeOffset? since, UseSystem? useSystem, SortOrder? sortOrder);
-    
-        /// <summary>Subscribe to callback notifications</summary>
-        /// <returns>Successful subscription</returns>
-        System.Threading.Tasks.Task SubscribeAsync(SubscriptionUpsert body);
-    
-        /// <summary>Unsubscribe from callback notifications</summary>
-        /// <returns>Successful deletion</returns>
-        System.Threading.Tasks.Task<Response> UnsubscribeAsync();
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.13.2.0 (NJsonSchema v10.5.2.0 (Newtonsoft.Json v12.0.0.0))")]
-    public partial class ApiController : Microsoft.AspNetCore.Mvc.Controller
-    {
-        private IApiController _implementation;
-    
-        public ApiController(IApiController implementation)
-        {
-            _implementation = implementation;
-        }
-    
         /// <summary>Health check</summary>
         /// <returns>Successful health check response</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("healthCheck")]
-        public System.Threading.Tasks.Task<HealthCheck> HealthCheck()
-        {
-            return _implementation.HealthCheckAsync();
-        }
+        public abstract System.Threading.Tasks.Task<HealthCheck> HealthCheck();
     
         /// <summary>List all accounts</summary>
         /// <param name="limit">How many items to return at one time (max 100) (default 100)</param>
@@ -68,26 +32,17 @@ namespace AnimalHouse.DesignFirst.Server.Controllers
         /// <param name="sortOrder">what sort order should be used for queries</param>
         /// <returns>A paged array of accounts</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("animals")]
-        public System.Threading.Tasks.Task<SubscriptionUpsert> ListAccounts([Microsoft.AspNetCore.Mvc.FromQuery] int? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string cursor, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? since, [Microsoft.AspNetCore.Mvc.FromQuery] UseSystem? useSystem, [Microsoft.AspNetCore.Mvc.FromQuery] SortOrder? sortOrder)
-        {
-            return _implementation.ListAccountsAsync(limit, cursor, since, useSystem, sortOrder);
-        }
+        public abstract System.Threading.Tasks.Task<SubscriptionUpsert> ListAccounts([Microsoft.AspNetCore.Mvc.FromQuery] int? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string cursor, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? since, [Microsoft.AspNetCore.Mvc.FromQuery] UseSystem? useSystem, [Microsoft.AspNetCore.Mvc.FromQuery] SortOrder? sortOrder);
     
         /// <summary>Subscribe to callback notifications</summary>
         /// <returns>Successful subscription</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("subscription")]
-        public System.Threading.Tasks.Task Subscribe([Microsoft.AspNetCore.Mvc.FromBody] SubscriptionUpsert body)
-        {
-            return _implementation.SubscribeAsync(body);
-        }
+        public abstract System.Threading.Tasks.Task Subscribe([Microsoft.AspNetCore.Mvc.FromBody] SubscriptionUpsert body);
     
         /// <summary>Unsubscribe from callback notifications</summary>
         /// <returns>Successful deletion</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("subscription")]
-        public System.Threading.Tasks.Task<Response> Unsubscribe()
-        {
-            return _implementation.UnsubscribeAsync();
-        }
+        public abstract System.Threading.Tasks.Task<Response> Unsubscribe();
     
     }
 

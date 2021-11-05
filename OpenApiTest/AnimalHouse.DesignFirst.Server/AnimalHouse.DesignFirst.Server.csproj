@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <Target Name="GenerateControllerFromOpenApiDocument" BeforeTargets="BeforeBuild">
-        <Exec Command="$(NSwagExe_Net50) openapi2cscontroller /input:open-api.yaml /classname:Api /namespace:AnimalHouse.DesignFirst.Server.Controllers /output:Controllers/ApiController.g.cs /UseLiquidTemplates:true /AspNetNamespace:Microsoft.AspNetCore.Mvc /ControllerBaseClass:Microsoft.AspNetCore.Mvc.Controller" />
+        <Exec Command="$(NSwagExe_Net50) openapi2cscontroller /input:open-api.yaml /classname:Api /namespace:AnimalHouse.DesignFirst.Server.Controllers /output:Controllers/ApiControllerBase.g.cs /UseLiquidTemplates:true /AspNetNamespace:Microsoft.AspNetCore.Mvc /ControllerBaseClass:Microsoft.AspNetCore.Mvc.Controller /ControllerStyle:Abstract" />
     </Target>
 
 </Project>

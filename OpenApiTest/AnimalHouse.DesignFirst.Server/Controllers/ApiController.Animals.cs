@@ -1,13 +1,14 @@
+using System;
 using System.Threading.Tasks;
 using AnimalHouse.Common.Repositories;
 
 namespace AnimalHouse.DesignFirst.Server.Controllers
 {
-    public partial class ApiControllerImplementation
+    public partial class ApiController
     {
         private readonly IAnimalRepository _animalRepository;
-        
-        public async Task<SubscriptionUpsert> ListAccountsAsync(int? limit, string cursor, System.DateTimeOffset? since, UseSystem? useSystem, SortOrder? sortOrder)
+
+        public override async Task<SubscriptionUpsert> ListAccounts(int? limit, string cursor, DateTimeOffset? since, UseSystem? useSystem, SortOrder? sortOrder)
         {
             await Task.Delay(1);
 

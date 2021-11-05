@@ -24,15 +24,22 @@ namespace AnimalHouse.DesignFirst.Server.Controllers
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("healthCheck")]
         public abstract System.Threading.Tasks.Task<HealthCheck> HealthCheck();
     
-        /// <summary>List all accounts</summary>
-        /// <param name="limit">How many items to return at one time (max 100) (default 100)</param>
-        /// <param name="cursor">Which item to start from</param>
-        /// <param name="since">Datetime value for incremental updates. NB: for external datetimes, the expected format is not in UTC. for vic-internal datetimes (see SinceIsExternal) the format is UTC.</param>
-        /// <param name="useSystem">what system should be used for id or updatedAt filters.</param>
-        /// <param name="sortOrder">what sort order should be used for queries</param>
-        /// <returns>A paged array of accounts</returns>
+        /// <summary>Get all animals</summary>
+        /// <returns>successful operation</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("animals")]
-        public abstract System.Threading.Tasks.Task<SubscriptionUpsert> ListAccounts([Microsoft.AspNetCore.Mvc.FromQuery] int? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string cursor, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? since, [Microsoft.AspNetCore.Mvc.FromQuery] UseSystem? useSystem, [Microsoft.AspNetCore.Mvc.FromQuery] SortOrder? sortOrder);
+        public abstract System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Bird>> AnimalsAll();
+    
+        /// <summary>Create animal</summary>
+        /// <param name="body">Animal to create</param>
+        /// <returns>Successful operation</returns>
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("animals")]
+        public abstract System.Threading.Tasks.Task<Bird> AnimalsPOST([Microsoft.AspNetCore.Mvc.FromBody] Bird body);
+    
+        /// <summary>Update animal</summary>
+        /// <param name="body">Animal to update</param>
+        /// <returns>Successful operation</returns>
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("animals")]
+        public abstract System.Threading.Tasks.Task<Bird> AnimalsPUT([Microsoft.AspNetCore.Mvc.FromBody] Bird body);
     
         /// <summary>Subscribe to callback notifications</summary>
         /// <returns>Successful subscription</returns>
@@ -1256,24 +1263,115 @@ namespace AnimalHouse.DesignFirst.Server.Controllers
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v12.0.0.0)")]
-    public enum UseSystem
+    public partial class Animal 
     {
-        [System.Runtime.Serialization.EnumMember(Value = @"internal")]
-        Internal = 0,
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid Id { get; set; }
     
-        [System.Runtime.Serialization.EnumMember(Value = @"external")]
-        External = 1,
+        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Name { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("createdAt", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.DateTimeOffset CreatedAt { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("tags", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.List<string> Tags { get; set; }
+    
     
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v12.0.0.0)")]
-    public enum SortOrder
+    public partial class Bird : Animal
     {
-        [System.Runtime.Serialization.EnumMember(Value = @"ascending")]
-        Ascending = 0,
+        [Newtonsoft.Json.JsonProperty("birdType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public BirdType BirdType { get; set; }
     
-        [System.Runtime.Serialization.EnumMember(Value = @"descending")]
-        Descending = 1,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v12.0.0.0)")]
+    public enum BirdType
+    {
+        _0 = 0,
+    
+        _1 = 1,
+    
+        _2 = 2,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v12.0.0.0)")]
+    public partial class ErrorApiResponse 
+    {
+        [Newtonsoft.Json.JsonProperty("code", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int Code { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("message", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Message { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("errors", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.IDictionary<string, string> Errors { get; set; }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v12.0.0.0)")]
+    public partial class Fish : Animal
+    {
+        [Newtonsoft.Json.JsonProperty("fishType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public FishType FishType { get; set; }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v12.0.0.0)")]
+    public enum FishType
+    {
+        _0 = 0,
+    
+        _1 = 1,
+    
+        _2 = 2,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v12.0.0.0)")]
+    public partial class Mammal : Animal
+    {
+        [Newtonsoft.Json.JsonProperty("mammalType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public MammalType MammalType { get; set; }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v12.0.0.0)")]
+    public enum MammalType
+    {
+        _0 = 0,
+    
+        _1 = 1,
+    
+        _2 = 2,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v12.0.0.0)")]
+    public partial class Reptile : Animal
+    {
+        [Newtonsoft.Json.JsonProperty("reptileType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public ReptileType ReptileType { get; set; }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v12.0.0.0)")]
+    public enum ReptileType
+    {
+        _0 = 0,
+    
+        _1 = 1,
+    
+        _2 = 2,
     
     }
     

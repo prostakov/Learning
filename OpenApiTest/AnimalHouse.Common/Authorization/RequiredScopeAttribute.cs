@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace AnimalHouse.CodeFirst.Server.Authorization
+namespace AnimalHouse.Common.Authorization
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
     public class RequiredScopeAttribute : TypeFilterAttribute

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace AnimalHouse.CodeFirst.Server.Controllers
+namespace AnimalHouse.CodeFirst.Server.Controllers.V23
 {
-    [Route("/subscriptions")]
+    [ApiVersion("23.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiController]
     public class SubscriptionsController : ControllerBase
     {
         private readonly ISubscriptionRepository _repository;
@@ -19,6 +21,26 @@ namespace AnimalHouse.CodeFirst.Server.Controllers
             _repository = repository;
         }
 
+        /// <summary>
+        /// Create or update subscription
+        /// </summary>
+        /// <remarks>Subscriptions can be created and updated</remarks>
+        /// <param name="subscription">Subscription to create or update</param>
+        /// <response code="204">Successful operation</response>
+        /// <response code="400">Request error</response>
+        [HttpPut]
+        [ApiVersion("23.4")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        [SwaggerOperation("UpdateSubscription")]
+        [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(Subscription))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorApiResponse))]
+        public async Task<IActionResult> CreateOrUpdateV4([FromBody] Subscription subscription)
+        {
+            await _repository.CreateOrUpdate(subscription);
+            return new NoContentResult();
+        }
+        
         /// <summary>
         /// Create or update subscription
         /// </summary>
@@ -47,6 +69,8 @@ namespace AnimalHouse.CodeFirst.Server.Controllers
         /// <response code="400">Request error</response>
         /// <response code="404">Not found error</response>
         [HttpDelete, Route("{id}")]
+        [MapToApiVersion("23.0")]
+        [MapToApiVersion("23.4")]
         [SwaggerOperation("DeleteSubscription")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorApiResponse))]

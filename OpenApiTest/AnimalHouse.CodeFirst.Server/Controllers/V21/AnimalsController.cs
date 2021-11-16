@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using AnimalHouse.CodeFirst.Server.Responses;
-using AnimalHouse.Common;
 using AnimalHouse.Common.Models;
 using AnimalHouse.Common.Repositories;
 using Microsoft.AspNetCore.Authorization;
@@ -11,10 +10,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace AnimalHouse.CodeFirst.Server.Controllers
+namespace AnimalHouse.CodeFirst.Server.Controllers.V21
 {
     [Authorize]
-    [Route("/animals")]
+    [ApiVersion("21.0", Deprecated = true)]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class AnimalsController : ControllerBase
     {

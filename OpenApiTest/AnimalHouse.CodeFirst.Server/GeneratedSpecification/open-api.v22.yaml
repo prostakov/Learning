@@ -2,7 +2,6 @@ openapi: 3.0.1
 info:
   title: AnimalHouse.CodeFirst.Server
   description: A simple example ASP.NET Core Web API
-  termsOfService: http://swagger.io/terms/
   contact:
     name: Serhii Prostakov
     url: https://twitter.com/prostakov
@@ -10,13 +9,13 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: v1
+  version: '22.0'
 paths:
-  /animals:
+  /api/v22/Animals:
     get:
       tags:
         - Animals
-      summary: Get all animals
+      summary: GetAllAnimals
       description: Gets all animals that are currently in storage
       responses:
         '200':
@@ -26,88 +25,68 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf:
-                    - $ref: '#/components/schemas/Bird'
-                    - $ref: '#/components/schemas/Fish'
-                    - $ref: '#/components/schemas/Mammal'
-                    - $ref: '#/components/schemas/Reptile'
+                  $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
         '400':
           description: Invalid tag value
     post:
       tags:
         - Animals
-      summary: Create animal
+      summary: CreateNewAnimal
       description: Animals can be created
       requestBody:
         description: Animal to create
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/Bird'
-                - $ref: '#/components/schemas/Fish'
-                - $ref: '#/components/schemas/Mammal'
-                - $ref: '#/components/schemas/Reptile'
+              $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
       responses:
         '201':
           description: Successful operation
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/Bird'
-                  - $ref: '#/components/schemas/Fish'
-                  - $ref: '#/components/schemas/Mammal'
-                  - $ref: '#/components/schemas/Reptile'
+                $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
         '400':
           description: Request error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorApiResponse'
+                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
     put:
       tags:
         - Animals
-      summary: Update animal
+      summary: UpdateAnimal
       description: Animals can be updated
       requestBody:
         description: Animal to update
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/Bird'
-                - $ref: '#/components/schemas/Fish'
-                - $ref: '#/components/schemas/Mammal'
-                - $ref: '#/components/schemas/Reptile'
+              $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
       responses:
         '204':
           description: Successful operation
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/Bird'
-                  - $ref: '#/components/schemas/Fish'
-                  - $ref: '#/components/schemas/Mammal'
-                  - $ref: '#/components/schemas/Reptile'
+                $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
         '400':
           description: Request error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorApiResponse'
+                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
         '404':
           description: Not found error
           content:
             application/json:
               schema:
                 type: string
-  /animals/tags:
+  /api/v22/Animals/tags:
     get:
       tags:
         - Animals
-      summary: Finds animals by tags
+      summary: FindAnimalsByTags
       description: 'Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
       parameters:
         - name: tags
@@ -126,22 +105,18 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf:
-                    - $ref: '#/components/schemas/Bird'
-                    - $ref: '#/components/schemas/Fish'
-                    - $ref: '#/components/schemas/Mammal'
-                    - $ref: '#/components/schemas/Reptile'
+                  $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
         '400':
           description: Invalid tag value
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorApiResponse'
-  '/animals/{id}':
+                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
+  '/api/v22/Animals/{id}':
     delete:
       tags:
         - Animals
-      summary: Delete animal
+      summary: DeleteAnimal
       description: Animals can be deleted
       parameters:
         - name: id
@@ -163,13 +138,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/ErrorApiResponse'
+                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorApiResponse'
+                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/ErrorApiResponse'
+                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
         '404':
           description: Not found error
           content:
@@ -182,36 +157,36 @@ paths:
             text/json:
               schema:
                 type: string
-  /subscriptions:
+  /api/v22/Subscriptions:
     put:
       tags:
         - Subscriptions
-      summary: Create or update subscription
+      summary: UpdateSubscription
       description: Subscriptions can be created and updated
       requestBody:
         description: Subscription to create or update
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Subscription'
+              $ref: '#/components/schemas/AnimalHouse.Common.Models.Subscription'
       responses:
         '204':
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Subscription'
+                $ref: '#/components/schemas/AnimalHouse.Common.Models.Subscription'
         '400':
           description: Request error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorApiResponse'
-  '/subscriptions/{id}':
+                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
+  '/api/v22/Subscriptions/{id}':
     delete:
       tags:
         - Subscriptions
-      summary: Delete subscription
+      summary: DeleteSubscription
       description: Subscriptions can be deleted
       parameters:
         - name: id
@@ -233,13 +208,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/ErrorApiResponse'
+                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorApiResponse'
+                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/ErrorApiResponse'
+                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
         '404':
           description: Not found error
           content:
@@ -254,7 +229,22 @@ paths:
                 type: string
 components:
   schemas:
-    Animal:
+    AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+      additionalProperties: false
+    AnimalHouse.Common.Models.Animal:
       type: object
       properties:
         id:
@@ -272,82 +262,7 @@ components:
             type: string
           nullable: true
       additionalProperties: false
-    Bird:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Animal'
-      properties:
-        birdType:
-          $ref: '#/components/schemas/BirdType'
-      additionalProperties: false
-    BirdType:
-      enum:
-        - 0
-        - 1
-        - 2
-      type: integer
-      format: int32
-    ErrorApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-          nullable: true
-      additionalProperties: false
-    Fish:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Animal'
-      properties:
-        fishType:
-          $ref: '#/components/schemas/FishType'
-      additionalProperties: false
-    FishType:
-      enum:
-        - 0
-        - 1
-        - 2
-      type: integer
-      format: int32
-    Mammal:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Animal'
-      properties:
-        mammalType:
-          $ref: '#/components/schemas/MammalType'
-      additionalProperties: false
-    MammalType:
-      enum:
-        - 0
-        - 1
-        - 2
-      type: integer
-      format: int32
-    Reptile:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Animal'
-      properties:
-        reptileType:
-          $ref: '#/components/schemas/ReptileType'
-      additionalProperties: false
-    ReptileType:
-      enum:
-        - 0
-        - 1
-        - 2
-      type: integer
-      format: int32
-    Subscription:
+    AnimalHouse.Common.Models.Subscription:
       type: object
       properties:
         id:

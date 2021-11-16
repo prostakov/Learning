@@ -19,9 +19,19 @@
         <ProjectReference Include="..\AnimalHouse.Common\AnimalHouse.Common.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="GeneratedSpecification" />
+    </ItemGroup>
+
     <Target Name="OpenAPI" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
-<!--        <Exec Command="dotnet swagger tofile &#45;&#45;output ./GeneratedSpecification/open-api.yaml &#45;&#45;yaml $(OutputPath)$(AssemblyName).dll v1" WorkingDirectory="$(ProjectDir)" />-->
-<!--        <Exec Command="dotnet swagger tofile &#45;&#45;output ./GeneratedSpecification/open-api.json $(OutputPath)$(AssemblyName).dll v1" WorkingDirectory="$(ProjectDir)" />-->
+        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v21.yaml --yaml $(OutputPath)$(AssemblyName).dll V21" WorkingDirectory="$(ProjectDir)" />
+        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v21.json $(OutputPath)$(AssemblyName).dll V21" WorkingDirectory="$(ProjectDir)" />
+        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v22.yaml --yaml $(OutputPath)$(AssemblyName).dll V22" WorkingDirectory="$(ProjectDir)" />
+        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v22.json $(OutputPath)$(AssemblyName).dll V22" WorkingDirectory="$(ProjectDir)" />
+        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v23.yaml --yaml $(OutputPath)$(AssemblyName).dll V23" WorkingDirectory="$(ProjectDir)" />
+        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v23.json $(OutputPath)$(AssemblyName).dll V23" WorkingDirectory="$(ProjectDir)" />
+        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v23.4.yaml --yaml $(OutputPath)$(AssemblyName).dll V23.4" WorkingDirectory="$(ProjectDir)" />
+        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v23.4.json $(OutputPath)$(AssemblyName).dll V23.4" WorkingDirectory="$(ProjectDir)" />
     </Target>
 
 </Project>

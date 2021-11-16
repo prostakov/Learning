@@ -32,30 +32,7 @@ namespace AnimalHouse.DesignFirst.Server
                     //     options.SerializerSettings.Converters.Add(new StringEnumConverter());
                     // });
             
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "AnimalHouse.DesignFirst.Server", Version = "v1"});
-                
-                c.AddSecurityDefinition("Bearer", //Name the security scheme
-                    new OpenApiSecurityScheme
-                    {
-                        Description = "JWT Authorization header using the Bearer scheme.",
-                        Type = SecuritySchemeType.Http, //We set the scheme type to http since we're using bearer authentication
-                        Scheme = "bearer" //The name of the HTTP Authorization scheme to be used in the Authorization header. In this case "bearer".
-                    });
-                
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement{
-                    {
-                        new OpenApiSecurityScheme{
-                            Reference = new OpenApiReference{
-                                Id = "Bearer", //The name of the previously defined security scheme.
-                                Type = ReferenceType.SecurityScheme
-                            }
-                        }, new List<string>()
-                    }
-                });
-
-            });
+            services.AddSwaggerGen();
 
             services.RegisterRepositories();
         }
@@ -66,9 +43,21 @@ namespace AnimalHouse.DesignFirst.Server
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AnimalHouse.DesignFirst.Server v1"));
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v23/swagger.json", "v23");
+                    c.SwaggerEndpoint("/swagger/v23.4/swagger.json", "v23.4");
+                });
             }
+            
+            app.UseStaticFiles();
+
+            app.UseCors(x =>
+            {
+                x.AllowAnyMethod();
+                x.AllowAnyHeader();
+                x.AllowAnyOrigin();
+            });
 
             app.UseHttpsRedirection();
 

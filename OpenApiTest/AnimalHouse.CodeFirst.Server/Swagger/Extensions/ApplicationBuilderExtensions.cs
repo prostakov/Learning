@@ -15,8 +15,8 @@ namespace AnimalHouse.CodeFirst.Server.Swagger.Extensions
             });
             app.UseSwaggerUI(options =>
             {
-                options.InjectStylesheet($"/{swaggerConfig.RoutePrefix}/swagger-custom-ui-styles.css");
-                options.InjectJavascript($"/{swaggerConfig.RoutePrefix}/swagger-custom-script.js");
+                // options.InjectStylesheet($"/{swaggerConfig.RoutePrefix}/swagger-custom-ui-styles.css");
+                // options.InjectJavascript($"/{swaggerConfig.RoutePrefix}/swagger-custom-script.js");
             });
         }
     }

@@ -12,28 +12,17 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace AnimalHouse.CodeFirst.Server.Swagger
 {
-    /// <summary>
-    /// Configures the Swagger generation options
-    /// </summary>
-    /// <remarks>This allows API versioning to define a Swagger document per API version after the
-    /// <see cref="IApiVersionDescriptionProvider"/> service has been resolved from the service container.</remarks>
     public class ConfigureSwaggerGenOptions : IConfigureOptions<SwaggerGenOptions>
     {
         private readonly IApiVersionDescriptionProvider _apiProvider;
         private readonly SwaggerConfig _swaggerConfig;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ConfigureSwaggerGenOptions"/> class
-        /// </summary>
-        /// <param name="apiProvider">The <see cref="IApiVersionDescriptionProvider">apiProvider</see> used to generate Swagger documents.</param>
-        /// <param name="swaggerConfig"></param>
+        
         public ConfigureSwaggerGenOptions(IApiVersionDescriptionProvider apiProvider, IOptions<SwaggerConfig> swaggerConfig)
         {
             _apiProvider = apiProvider ?? throw new ArgumentNullException(nameof(apiProvider));
             _swaggerConfig = swaggerConfig.Value;
         }
-
-        /// <inheritdoc />
+        
         public void Configure(SwaggerGenOptions options)
         {
             // Add a custom operation filter which sets default values
@@ -46,35 +35,27 @@ namespace AnimalHouse.CodeFirst.Server.Swagger
                 options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
             }
 
-            // Add JWT Bearer Authorization
-            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-            {
-                Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                Name = "Authorization",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.ApiKey
-            });
-
-            // Add Security Requirement
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
+            // Auth scheme
+            options.AddSecurityDefinition("Bearer",
+                new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme.",
+                    Type = SecuritySchemeType.Http, //We set the scheme type to http since we're using bearer authentication
+                    Scheme = "bearer" //The name of the HTTP Authorization scheme to be used in the Authorization header. In this case "bearer".
+                });
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement{
                 {
                     new OpenApiSecurityScheme
                     {
                         Reference = new OpenApiReference
                         {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        },
-                        Scheme = "oauth2",
-                        Name = "Bearer",
-                        In = ParameterLocation.Header,
-                    },
-                    new List<string>()
+                            Id = "Bearer", //The name of the previously defined security scheme.
+                            Type = ReferenceType.SecurityScheme
+                        }
+                    }, new List<string>()
                 }
             });
 
-            // Include Document file for CompanyWebApi project
             options.IncludeXmlComments(GetXmlCommentsPath(), true);
 
             // Provide a custom strategy for generating the unique Id's
@@ -87,15 +68,10 @@ namespace AnimalHouse.CodeFirst.Server.Swagger
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             return xmlPath;
         }
-
-        /// <summary>
-        /// Create API version
-        /// </summary>
-        /// <param name="description"></param>
-        /// <returns></returns>
+        
         private OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
         {
-            var info = new OpenApiInfo()
+            var info = new OpenApiInfo
             {
                 Title = _swaggerConfig.Title,
                 Version = description.ApiVersion.ToString(),
@@ -113,10 +89,8 @@ namespace AnimalHouse.CodeFirst.Server.Swagger
                 }
             };
   
-            if (description.IsDeprecated)
-            {
+            if (description.IsDeprecated) 
                 info.Description += " ** THIS API VERSION HAS BEEN DEPRECATED!";
-            }
 
             return info;
         }

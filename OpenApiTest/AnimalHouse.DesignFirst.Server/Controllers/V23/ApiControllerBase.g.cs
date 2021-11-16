@@ -12,7 +12,7 @@
 #pragma warning disable 8073 // Disable "CS8073 The result of the expression is always 'false' since a value of type 'T' is never equal to 'null' of type 'T?'"
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 
-namespace AnimalHouse.DesignFirst.Server.Controllers
+namespace AnimalHouse.DesignFirst.Server.Controllers.V23
 {
     using System = global::System;
 
@@ -21,34 +21,34 @@ namespace AnimalHouse.DesignFirst.Server.Controllers
     {
         /// <summary>Health check</summary>
         /// <returns>Successful health check response</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("healthCheck")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("api/v23/healthCheck")]
         public abstract System.Threading.Tasks.Task<HealthCheck> HealthCheck();
     
         /// <summary>Get all animals</summary>
         /// <returns>successful operation</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("animals")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("api/v23/animals")]
         public abstract System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Bird>> AnimalsAll();
     
         /// <summary>Create animal</summary>
         /// <param name="body">Animal to create</param>
         /// <returns>Successful operation</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("animals")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("api/v23/animals")]
         public abstract System.Threading.Tasks.Task<Bird> AnimalsPOST([Microsoft.AspNetCore.Mvc.FromBody] Bird body);
     
         /// <summary>Update animal</summary>
         /// <param name="body">Animal to update</param>
         /// <returns>Successful operation</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("animals")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("api/v23/animals")]
         public abstract System.Threading.Tasks.Task<Bird> AnimalsPUT([Microsoft.AspNetCore.Mvc.FromBody] Bird body);
     
         /// <summary>Subscribe to callback notifications</summary>
         /// <returns>Successful subscription</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("subscription")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("api/v23/subscription")]
         public abstract System.Threading.Tasks.Task Subscribe([Microsoft.AspNetCore.Mvc.FromBody] SubscriptionUpsert body);
     
         /// <summary>Unsubscribe from callback notifications</summary>
         /// <returns>Successful deletion</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("subscription")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("api/v23/subscription")]
         public abstract System.Threading.Tasks.Task<Response> Unsubscribe();
     
     }

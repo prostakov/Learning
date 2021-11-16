@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AnimalHouse.Common.Models;
 using AnimalHouse.Common.Repositories;
 
-namespace AnimalHouse.DesignFirst.Server.Controllers
+namespace AnimalHouse.DesignFirst.Server.Controllers.V23_4
 {
     public partial class ApiController
     {
@@ -24,7 +24,7 @@ namespace AnimalHouse.DesignFirst.Server.Controllers
         {
             var id = Guid.NewGuid(); // TODO: UserId in here
             await _subscriptionRepository.Delete(id);
-            return Controllers.Response.Ok;
+            return Controllers.V23_4.Response.Ok;
         }
     }
 }

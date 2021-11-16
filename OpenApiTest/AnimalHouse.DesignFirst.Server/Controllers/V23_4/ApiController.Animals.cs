@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AnimalHouse.Common.Repositories;
-using AnimalHouse.DesignFirst.Server.Converters;
+using AnimalHouse.DesignFirst.Server.Controllers.V23_4.Converters;
 
-namespace AnimalHouse.DesignFirst.Server.Controllers
+namespace AnimalHouse.DesignFirst.Server.Controllers.V23_4
 {
     public partial class ApiController
     {

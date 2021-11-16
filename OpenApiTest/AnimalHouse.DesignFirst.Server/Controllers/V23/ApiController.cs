@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using AnimalHouse.Common.Repositories;
 
-namespace AnimalHouse.DesignFirst.Server.Controllers
+namespace AnimalHouse.DesignFirst.Server.Controllers.V23
 {
     public partial class ApiController : ApiControllerBase
     {

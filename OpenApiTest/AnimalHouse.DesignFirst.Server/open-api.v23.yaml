@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  version: 0.1.0
+  version: 23.0.0
   contact:
     name: 'Serhii Prostakov'
     url: 'https://twitter.com/prostakov'
@@ -23,7 +23,7 @@ tags:
     description: |
       These requests represents a user’s action in the PAI system and repsonses to those actions.
 paths:
-  /healthCheck:
+  /api/v23/healthCheck:
     get:
       description: Use this request to obtain a health check statement.
       summary: Health check
@@ -37,7 +37,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HealthCheck'
-  /animals:
+  /api/v23/animals:
     get:
       tags:
         - Animals
@@ -135,7 +135,7 @@ paths:
             application/json:
               schema:
                 type: string
-  /subscription:
+  /api/v23/subscription:
     put:
       description: |
         This request is used to configure or modify a new subscription to user and automated actions.

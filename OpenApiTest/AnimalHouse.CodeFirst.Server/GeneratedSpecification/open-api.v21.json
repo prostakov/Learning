@@ -2,8 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "AnimalHouse.CodeFirst.Server",
-    "description": "A simple example ASP.NET Core Web API",
-    "termsOfService": "http://swagger.io/terms/",
+    "description": "A simple example ASP.NET Core Web API ** THIS API VERSION HAS BEEN DEPRECATED!",
     "contact": {
       "name": "Serhii Prostakov",
       "url": "https://twitter.com/prostakov",
@@ -13,15 +12,15 @@
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "version": "v1"
+    "version": "21.0"
   },
   "paths": {
-    "/animals": {
+    "/api/v21/Animals": {
       "get": {
         "tags": [
           "Animals"
         ],
-        "summary": "Get all animals",
+        "summary": "GetAllAnimals",
         "description": "Gets all animals that are currently in storage",
         "responses": {
           "200": {
@@ -31,20 +30,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "oneOf": [
-                      {
-                        "$ref": "#/components/schemas/Bird"
-                      },
-                      {
-                        "$ref": "#/components/schemas/Fish"
-                      },
-                      {
-                        "$ref": "#/components/schemas/Mammal"
-                      },
-                      {
-                        "$ref": "#/components/schemas/Reptile"
-                      }
-                    ]
+                    "$ref": "#/components/schemas/AnimalHouse.Common.Models.Animal"
                   }
                 }
               }
@@ -53,33 +39,21 @@
           "400": {
             "description": "Invalid tag value"
           }
-        }
+        },
+        "deprecated": true
       },
       "post": {
         "tags": [
           "Animals"
         ],
-        "summary": "Create animal",
+        "summary": "CreateNewAnimal",
         "description": "Animals can be created",
         "requestBody": {
           "description": "Animal to create",
           "content": {
             "application/json": {
               "schema": {
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Bird"
-                  },
-                  {
-                    "$ref": "#/components/schemas/Fish"
-                  },
-                  {
-                    "$ref": "#/components/schemas/Mammal"
-                  },
-                  {
-                    "$ref": "#/components/schemas/Reptile"
-                  }
-                ]
+                "$ref": "#/components/schemas/AnimalHouse.Common.Models.Animal"
               }
             }
           }
@@ -90,20 +64,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/Bird"
-                    },
-                    {
-                      "$ref": "#/components/schemas/Fish"
-                    },
-                    {
-                      "$ref": "#/components/schemas/Mammal"
-                    },
-                    {
-                      "$ref": "#/components/schemas/Reptile"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/AnimalHouse.Common.Models.Animal"
                 }
               }
             }
@@ -113,38 +74,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorApiResponse"
+                  "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse"
                 }
               }
             }
           }
-        }
+        },
+        "deprecated": true
       },
       "put": {
         "tags": [
           "Animals"
         ],
-        "summary": "Update animal",
+        "summary": "UpdateAnimal",
         "description": "Animals can be updated",
         "requestBody": {
           "description": "Animal to update",
           "content": {
             "application/json": {
               "schema": {
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Bird"
-                  },
-                  {
-                    "$ref": "#/components/schemas/Fish"
-                  },
-                  {
-                    "$ref": "#/components/schemas/Mammal"
-                  },
-                  {
-                    "$ref": "#/components/schemas/Reptile"
-                  }
-                ]
+                "$ref": "#/components/schemas/AnimalHouse.Common.Models.Animal"
               }
             }
           }
@@ -155,20 +104,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/Bird"
-                    },
-                    {
-                      "$ref": "#/components/schemas/Fish"
-                    },
-                    {
-                      "$ref": "#/components/schemas/Mammal"
-                    },
-                    {
-                      "$ref": "#/components/schemas/Reptile"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/AnimalHouse.Common.Models.Animal"
                 }
               }
             }
@@ -178,7 +114,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorApiResponse"
+                  "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse"
                 }
               }
             }
@@ -193,15 +129,16 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
-    "/animals/tags": {
+    "/api/v21/Animals/tags": {
       "get": {
         "tags": [
           "Animals"
         ],
-        "summary": "Finds animals by tags",
+        "summary": "FindAnimalsByTags",
         "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
         "parameters": [
           {
@@ -225,20 +162,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "oneOf": [
-                      {
-                        "$ref": "#/components/schemas/Bird"
-                      },
-                      {
-                        "$ref": "#/components/schemas/Fish"
-                      },
-                      {
-                        "$ref": "#/components/schemas/Mammal"
-                      },
-                      {
-                        "$ref": "#/components/schemas/Reptile"
-                      }
-                    ]
+                    "$ref": "#/components/schemas/AnimalHouse.Common.Models.Animal"
                   }
                 }
               }
@@ -249,20 +173,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorApiResponse"
+                  "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse"
                 }
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
-    "/animals/{id}": {
+    "/api/v21/Animals/{id}": {
       "delete": {
         "tags": [
           "Animals"
         ],
-        "summary": "Delete animal",
+        "summary": "DeleteAnimal",
         "description": "Animals can be deleted",
         "parameters": [
           {
@@ -292,17 +217,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorApiResponse"
+                  "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorApiResponse"
+                  "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorApiResponse"
+                  "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse"
                 }
               }
             }
@@ -327,22 +252,23 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
-    "/subscriptions": {
+    "/api/v21/Subscriptions": {
       "put": {
         "tags": [
           "Subscriptions"
         ],
-        "summary": "Create or update subscription",
+        "summary": "UpdateSubscription",
         "description": "Subscriptions can be created and updated",
         "requestBody": {
           "description": "Subscription to create or update",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Subscription"
+                "$ref": "#/components/schemas/AnimalHouse.Common.Models.Subscription"
               }
             }
           }
@@ -353,7 +279,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Subscription"
+                  "$ref": "#/components/schemas/AnimalHouse.Common.Models.Subscription"
                 }
               }
             }
@@ -363,20 +289,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorApiResponse"
+                  "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse"
                 }
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
-    "/subscriptions/{id}": {
+    "/api/v21/Subscriptions/{id}": {
       "delete": {
         "tags": [
           "Subscriptions"
         ],
-        "summary": "Delete subscription",
+        "summary": "DeleteSubscription",
         "description": "Subscriptions can be deleted",
         "parameters": [
           {
@@ -406,17 +333,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorApiResponse"
+                  "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorApiResponse"
+                  "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorApiResponse"
+                  "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse"
                 }
               }
             }
@@ -441,13 +368,35 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     }
   },
   "components": {
     "schemas": {
-      "Animal": {
+      "AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnimalHouse.Common.Models.Animal": {
         "type": "object",
         "properties": {
           "id": {
@@ -472,120 +421,7 @@
         },
         "additionalProperties": false
       },
-      "Bird": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Animal"
-          }
-        ],
-        "properties": {
-          "birdType": {
-            "$ref": "#/components/schemas/BirdType"
-          }
-        },
-        "additionalProperties": false
-      },
-      "BirdType": {
-        "enum": [
-          0,
-          1,
-          2
-        ],
-        "type": "integer",
-        "format": "int32"
-      },
-      "ErrorApiResponse": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "errors": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Fish": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Animal"
-          }
-        ],
-        "properties": {
-          "fishType": {
-            "$ref": "#/components/schemas/FishType"
-          }
-        },
-        "additionalProperties": false
-      },
-      "FishType": {
-        "enum": [
-          0,
-          1,
-          2
-        ],
-        "type": "integer",
-        "format": "int32"
-      },
-      "Mammal": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Animal"
-          }
-        ],
-        "properties": {
-          "mammalType": {
-            "$ref": "#/components/schemas/MammalType"
-          }
-        },
-        "additionalProperties": false
-      },
-      "MammalType": {
-        "enum": [
-          0,
-          1,
-          2
-        ],
-        "type": "integer",
-        "format": "int32"
-      },
-      "Reptile": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Animal"
-          }
-        ],
-        "properties": {
-          "reptileType": {
-            "$ref": "#/components/schemas/ReptileType"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ReptileType": {
-        "enum": [
-          0,
-          1,
-          2
-        ],
-        "type": "integer",
-        "format": "int32"
-      },
-      "Subscription": {
+      "AnimalHouse.Common.Models.Subscription": {
         "type": "object",
         "properties": {
           "id": {

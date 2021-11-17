@@ -56,6 +56,8 @@ paths:
                     - $ref: '#/components/schemas/Fish'
                     - $ref: '#/components/schemas/Mammal'
                     - $ref: '#/components/schemas/Reptile'
+                  discriminator:
+                    propertyName: discriminator
         '400':
           description: Invalid tag value
     post:
@@ -75,11 +77,6 @@ paths:
                 - $ref: '#/components/schemas/Reptile'
               discriminator:
                 propertyName: discriminator
-                mapping:
-                  Bird: '#/components/schemas/Bird'
-                  Fish: '#/components/schemas/Fish'
-                  Mammal: '#/components/schemas/Mammal'
-                  Reptile: '#/components/schemas/Reptile'
       responses:
         '201':
           description: Successful operation

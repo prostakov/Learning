@@ -58,7 +58,7 @@ namespace AnimalHouse.CodeFirst.Server.Controllers.V23
         [Produces("application/json")]
         [SwaggerOperation("FindAnimalsByTags")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Animal[]))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorApiResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> GetAnimalsByTags([FromQuery] [Required] List<string> tags)
         {
             var animals = await _repository.GetByTags(tags);
@@ -68,7 +68,20 @@ namespace AnimalHouse.CodeFirst.Server.Controllers.V23
         /// <summary>
         /// Create animal
         /// </summary>
-        /// <remarks>Animals can be created</remarks>
+        /// <remarks>
+        ///
+        /// Animals can be created
+        /// 
+        /// Sample request:
+        ///
+        ///     POST /Todo
+        ///     {
+        ///        "id": 1,
+        ///        "name": "Item #1",
+        ///        "isComplete": true
+        ///     }
+        ///
+        /// </remarks>
         /// <param name="animal">Animal to create</param>
         /// <response code="201">Successful operation</response>
         /// <response code="400">Request error</response>
@@ -79,9 +92,10 @@ namespace AnimalHouse.CodeFirst.Server.Controllers.V23
         [Produces("application/json")]
         [SwaggerOperation("CreateNewAnimal")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Animal))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorApiResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
         public async Task<IActionResult> Create([FromBody] Animal animal)
         {
+            //return Problem("Some", statusCode: StatusCodes.Status500InternalServerError, title: "Unable to send message!");
             var createdAnimal = await _repository.Create(animal);
             return new CreatedResult(createdAnimal.Id.ToString(), createdAnimal);
         }

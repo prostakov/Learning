@@ -5,8 +5,8 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace AnimalHouse.Common.Models
 {
-    [Newtonsoft.Json.JsonConverter(typeof(JsonInheritanceConverter), "discriminator")]
-    [SwaggerDiscriminator("discriminator")]
+    [Newtonsoft.Json.JsonConverter(typeof(JsonInheritanceConverter), Constants.Discriminator)]
+    [SwaggerDiscriminator(Constants.Discriminator)]
     
     [JsonInheritance(nameof(Bird), typeof(Bird))]
     [SwaggerSubType(typeof(Bird), DiscriminatorValue = nameof(Bird))]

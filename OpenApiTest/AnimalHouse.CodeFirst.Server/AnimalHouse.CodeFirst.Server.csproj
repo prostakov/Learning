@@ -25,14 +25,8 @@
     </ItemGroup>
 
     <Target Name="OpenAPI" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
-        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v21.yaml --yaml $(OutputPath)$(AssemblyName).dll V21" WorkingDirectory="$(ProjectDir)" />
-        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v21.json $(OutputPath)$(AssemblyName).dll V21" WorkingDirectory="$(ProjectDir)" />
-        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v22.yaml --yaml $(OutputPath)$(AssemblyName).dll V22" WorkingDirectory="$(ProjectDir)" />
-        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v22.json $(OutputPath)$(AssemblyName).dll V22" WorkingDirectory="$(ProjectDir)" />
-        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v23.yaml --yaml $(OutputPath)$(AssemblyName).dll V23" WorkingDirectory="$(ProjectDir)" />
-        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v23.json $(OutputPath)$(AssemblyName).dll V23" WorkingDirectory="$(ProjectDir)" />
-        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v23.4.yaml --yaml $(OutputPath)$(AssemblyName).dll V23.4" WorkingDirectory="$(ProjectDir)" />
-        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v23.4.json $(OutputPath)$(AssemblyName).dll V23.4" WorkingDirectory="$(ProjectDir)" />
+        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v24.yaml --yaml $(OutputPath)$(AssemblyName).dll V24" WorkingDirectory="$(ProjectDir)" />
+        <Exec Command="dotnet swagger tofile --output ./GeneratedSpecification/open-api.v24.json        $(OutputPath)$(AssemblyName).dll V24" WorkingDirectory="$(ProjectDir)" />
     </Target>
 
 </Project>

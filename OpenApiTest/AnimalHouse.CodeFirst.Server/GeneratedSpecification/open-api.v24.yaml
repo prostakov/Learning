@@ -9,9 +9,9 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: '22.0'
+  version: '24.0'
 paths:
-  /api/v22/Animals:
+  /api/v24/Animals:
     get:
       tags:
         - Animals
@@ -25,33 +25,45 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
+                  oneOf:
+                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
+                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
+                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
+                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
         '400':
           description: Invalid tag value
     post:
       tags:
         - Animals
       summary: CreateNewAnimal
-      description: Animals can be created
+      description: "Animals can be created\r\n\r\nSample request:\r\n            \r\n    POST /Todo\r\n    {\r\n       \"id\": 1,\r\n       \"name\": \"Item #1\",\r\n       \"isComplete\": true\r\n    }"
       requestBody:
         description: Animal to create
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
+              oneOf:
+                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
+                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
+                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
+                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
       responses:
         '201':
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
+                oneOf:
+                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
+                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
+                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
+                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
         '400':
           description: Request error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
     put:
       tags:
         - Animals
@@ -62,14 +74,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
+              oneOf:
+                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
+                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
+                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
+                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
       responses:
         '204':
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
+                oneOf:
+                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
+                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
+                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
+                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
         '400':
           description: Request error
           content:
@@ -82,7 +102,7 @@ paths:
             application/json:
               schema:
                 type: string
-  /api/v22/Animals/tags:
+  /api/v24/Animals/tags:
     get:
       tags:
         - Animals
@@ -105,14 +125,18 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
+                  oneOf:
+                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
+                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
+                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
+                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
         '400':
           description: Invalid tag value
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
-  '/api/v22/Animals/{id}':
+                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+  '/api/v24/Animals/{id}':
     delete:
       tags:
         - Animals
@@ -157,7 +181,7 @@ paths:
             text/json:
               schema:
                 type: string
-  /api/v22/Subscriptions:
+  /api/v24/Subscriptions:
     put:
       tags:
         - Subscriptions
@@ -182,7 +206,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
-  '/api/v22/Subscriptions/{id}':
+  '/api/v24/Subscriptions/{id}':
     delete:
       tags:
         - Subscriptions
@@ -245,8 +269,12 @@ components:
           nullable: true
       additionalProperties: false
     AnimalHouse.Common.Models.Animal:
+      required:
+        - discriminator
       type: object
       properties:
+        discriminator:
+          type: string
         id:
           type: string
           format: uuid
@@ -262,6 +290,69 @@ components:
             type: string
           nullable: true
       additionalProperties: false
+      discriminator:
+        propertyName: discriminator
+        mapping:
+          Bird: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
+          Fish: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
+          Mammal: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
+          Reptile: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
+    AnimalHouse.Common.Models.Animals.Bird:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
+      properties:
+        birdType:
+          $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.BirdType'
+      additionalProperties: false
+    AnimalHouse.Common.Models.Animals.BirdType:
+      enum:
+        - None
+        - Parrot
+        - Peacock
+      type: string
+    AnimalHouse.Common.Models.Animals.Fish:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
+      properties:
+        fishType:
+          $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.FishType'
+      additionalProperties: false
+    AnimalHouse.Common.Models.Animals.FishType:
+      enum:
+        - None
+        - SwordFish
+        - ClownFish
+      type: string
+    AnimalHouse.Common.Models.Animals.Mammal:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
+      properties:
+        mammalType:
+          $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.MammalType'
+      additionalProperties: false
+    AnimalHouse.Common.Models.Animals.MammalType:
+      enum:
+        - None
+        - Cat
+        - Dog
+      type: string
+    AnimalHouse.Common.Models.Animals.Reptile:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
+      properties:
+        reptileType:
+          $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.ReptileType'
+      additionalProperties: false
+    AnimalHouse.Common.Models.Animals.ReptileType:
+      enum:
+        - None
+        - Lizard
+        - Turtle
+      type: string
     AnimalHouse.Common.Models.Subscription:
       type: object
       properties:
@@ -275,6 +366,26 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    Microsoft.AspNetCore.Mvc.ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: { }
   securitySchemes:
     Bearer:
       type: http

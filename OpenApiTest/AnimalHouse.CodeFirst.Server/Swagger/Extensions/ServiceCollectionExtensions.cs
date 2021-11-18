@@ -15,7 +15,8 @@ namespace AnimalHouse.CodeFirst.Server.Swagger.Extensions
             services.AddTransient<IConfigureOptions<SwaggerUIOptions>, ConfigureSwaggerUiOptions>();
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerGenOptions>();
             
-            services.AddSwaggerGen(options => options.EnableAnnotations());
+            services.AddSwaggerGen(options => options.EnableAnnotations(enableAnnotationsForInheritance: true, 
+                                                                        enableAnnotationsForPolymorphism: true));
         }
         
         public static void ConfigureApiVersioning(this IServiceCollection services)

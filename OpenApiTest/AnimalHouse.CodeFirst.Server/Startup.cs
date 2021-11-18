@@ -35,7 +35,8 @@ namespace AnimalHouse.CodeFirst.Server
             
             services.AddSwaggerMiddleware();
             services.ConfigureApiVersioning();
-            
+            services.AddSwaggerGenNewtonsoftSupport();
+
             services.RegisterRepositories();
         }
         

@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using AnimalHouse.CodeFirst.Server.Responses;
+using AnimalHouse.CodeFirst.Server.Swagger.Attributes;
+using AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription;
 using AnimalHouse.Common.Models;
 using AnimalHouse.Common.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -34,6 +36,7 @@ namespace AnimalHouse.CodeFirst.Server.Controllers.V24
         [SwaggerOperation("UpdateSubscription")]
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(Subscription))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorApiResponse))]
+        [SwaggerWebhookCallbackSchema(typeof(SubscriptionWebhookCallback))]
         public async Task<IActionResult> CreateOrUpdate([FromBody] Subscription subscription)
         {
             await _repository.CreateOrUpdate(subscription);

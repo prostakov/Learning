@@ -367,6 +367,164 @@
               }
             }
           }
+        },
+        "callbacks": {
+          "vendorNew": {
+            "{$request.body#/callbackUrl}/vendorNew": {
+              "post": {
+                "summary": "Callback initiated when new vendor is created from VIC.AI admin panel.",
+                "description": "This request is sent when a user in Vic.ai adds a new vendor to the system.\r\n\r\nRequest body contains the vendor object.\r\n\r\nA 201 response indicates that the vendor object has been successfully persisted to the external system, and it must contain the external system's vendor object id as the externalId parameter.\r\n\r\nAny other response will be considered a failure, the vendor object externalId will not be specified, and the error message you specify will be surfaced to the user.\r\n\r\nA 400 response indicates a data validation error.\r\n\r\nThis callback will timeout after 5 seconds.",
+                "parameters": [
+                  {
+                    "name": "X-Request-Id",
+                    "in": "header",
+                    "description": "Token to be able to correctly log associated requests",
+                    "schema": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  }
+                ],
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto.CreateOrUpdateVendorRequest"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Your server implementation should return this HTTP status code if the data was received successfully"
+                  },
+                  "4xx": {
+                    "description": "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. No retries are attempted."
+                  },
+                  "5xx": {
+                    "description": "If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. No retries are attempted."
+                  }
+                }
+              }
+            }
+          },
+          "invoicePost": {
+            "{$request.body#/callbackUrl}/invoicePost": {
+              "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                  {
+                    "name": "X-Request-Id",
+                    "in": "header",
+                    "description": "Token to be able to correctly log associated requests",
+                    "schema": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  }
+                ],
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto.CreateOrUpdateVendorRequest"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Your server implementation should return this HTTP status code if the data was received successfully"
+                  },
+                  "4xx": {
+                    "description": "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. No retries are attempted."
+                  },
+                  "5xx": {
+                    "description": "If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. No retries are attempted."
+                  }
+                }
+              }
+            }
+          },
+          "invoiceTransfer": {
+            "{$request.body#/callbackUrl}/invoiceTransfer": {
+              "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                  {
+                    "name": "X-Request-Id",
+                    "in": "header",
+                    "description": "Token to be able to correctly log associated requests",
+                    "schema": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  }
+                ],
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto.CreateOrUpdateVendorRequest"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Your server implementation should return this HTTP status code if the data was received successfully"
+                  },
+                  "4xx": {
+                    "description": "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. No retries are attempted."
+                  },
+                  "5xx": {
+                    "description": "If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. No retries are attempted."
+                  }
+                }
+              }
+            }
+          },
+          "syncRequest": {
+            "{$request.body#/callbackUrl}/syncRequest": {
+              "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [
+                  {
+                    "name": "X-Request-Id",
+                    "in": "header",
+                    "description": "Token to be able to correctly log associated requests",
+                    "schema": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  }
+                ],
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto.CreateOrUpdateVendorRequest"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Your server implementation should return this HTTP status code if the data was received successfully"
+                  },
+                  "4xx": {
+                    "description": "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. No retries are attempted."
+                  },
+                  "5xx": {
+                    "description": "If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. No retries are attempted."
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -463,6 +621,80 @@
               "type": "string"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto.CreateOrUpdateVendorRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "streetAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressState": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressPostalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.SubscriptionWebhookCallback": {
+        "type": "object",
+        "properties": {
+          "callbacks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/System.Collections.Generic.KeyValuePair`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[Microsoft.OpenApi.Models.OpenApiCallback, Microsoft.OpenApi, Version=1.2.3.0, Culture=neutral, PublicKeyToken=3f5743946376f042]]"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -639,6 +871,996 @@
           }
         },
         "additionalProperties": { }
+      },
+      "Microsoft.OpenApi.Any.AnyType": {
+        "enum": [
+          "Primitive",
+          "Null",
+          "Array",
+          "Object"
+        ],
+        "type": "string"
+      },
+      "Microsoft.OpenApi.Any.IOpenApiAny": {
+        "type": "object",
+        "properties": {
+          "anyType": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Any.AnyType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Expressions.RuntimeExpression": {
+        "type": "object",
+        "properties": {
+          "expression": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Interfaces.IOpenApiExtension": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiCallback": {
+        "type": "object",
+        "properties": {
+          "pathItems": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiPathItem"
+            },
+            "nullable": true
+          },
+          "unresolvedReference": {
+            "type": "boolean"
+          },
+          "reference": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference"
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiDiscriminator": {
+        "type": "object",
+        "properties": {
+          "propertyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "mapping": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiEncoding": {
+        "type": "object",
+        "properties": {
+          "contentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "headers": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiHeader"
+            },
+            "nullable": true
+          },
+          "style": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.ParameterStyle"
+          },
+          "explode": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "allowReserved": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiExample": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny"
+          },
+          "externalValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          },
+          "reference": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference"
+          },
+          "unresolvedReference": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiExternalDocs": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiHeader": {
+        "type": "object",
+        "properties": {
+          "unresolvedReference": {
+            "type": "boolean"
+          },
+          "reference": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "deprecated": {
+            "type": "boolean"
+          },
+          "allowEmptyValue": {
+            "type": "boolean"
+          },
+          "style": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.ParameterStyle"
+          },
+          "explode": {
+            "type": "boolean"
+          },
+          "allowReserved": {
+            "type": "boolean"
+          },
+          "schema": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema"
+          },
+          "example": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny"
+          },
+          "examples": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiExample"
+            },
+            "nullable": true
+          },
+          "content": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiMediaType"
+            },
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiLink": {
+        "type": "object",
+        "properties": {
+          "operationRef": {
+            "type": "string",
+            "nullable": true
+          },
+          "operationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "parameters": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.RuntimeExpressionAnyWrapper"
+            },
+            "nullable": true
+          },
+          "requestBody": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.RuntimeExpressionAnyWrapper"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "server": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiServer"
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          },
+          "unresolvedReference": {
+            "type": "boolean"
+          },
+          "reference": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiMediaType": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema"
+          },
+          "example": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny"
+          },
+          "examples": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiExample"
+            },
+            "nullable": true
+          },
+          "encoding": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiEncoding"
+            },
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiOperation": {
+        "type": "object",
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiTag"
+            },
+            "nullable": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "externalDocs": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiExternalDocs"
+          },
+          "operationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiParameter"
+            },
+            "nullable": true
+          },
+          "requestBody": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiRequestBody"
+          },
+          "responses": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiResponse"
+            },
+            "nullable": true
+          },
+          "callbacks": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiCallback"
+            },
+            "nullable": true
+          },
+          "deprecated": {
+            "type": "boolean"
+          },
+          "security": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "nullable": true
+          },
+          "servers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiServer"
+            },
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiParameter": {
+        "type": "object",
+        "properties": {
+          "unresolvedReference": {
+            "type": "boolean"
+          },
+          "reference": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "in": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.ParameterLocation"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "deprecated": {
+            "type": "boolean"
+          },
+          "allowEmptyValue": {
+            "type": "boolean"
+          },
+          "style": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.ParameterStyle"
+          },
+          "explode": {
+            "type": "boolean"
+          },
+          "allowReserved": {
+            "type": "boolean"
+          },
+          "schema": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema"
+          },
+          "examples": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiExample"
+            },
+            "nullable": true
+          },
+          "example": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny"
+          },
+          "content": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiMediaType"
+            },
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiPathItem": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "operations": {
+            "type": "object",
+            "properties": {
+              "Get": {
+                "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation"
+              },
+              "Put": {
+                "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation"
+              },
+              "Post": {
+                "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation"
+              },
+              "Delete": {
+                "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation"
+              },
+              "Options": {
+                "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation"
+              },
+              "Head": {
+                "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation"
+              },
+              "Patch": {
+                "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation"
+              },
+              "Trace": {
+                "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation"
+              }
+            },
+            "additionalProperties": false,
+            "nullable": true
+          },
+          "servers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiServer"
+            },
+            "nullable": true
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiParameter"
+            },
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiReference": {
+        "type": "object",
+        "properties": {
+          "externalResource": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.ReferenceType"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "isExternal": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "isLocal": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "referenceV3": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "referenceV2": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiRequestBody": {
+        "type": "object",
+        "properties": {
+          "unresolvedReference": {
+            "type": "boolean"
+          },
+          "reference": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "content": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiMediaType"
+            },
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiResponse": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "headers": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiHeader"
+            },
+            "nullable": true
+          },
+          "content": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiMediaType"
+            },
+            "nullable": true
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiLink"
+            },
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          },
+          "unresolvedReference": {
+            "type": "boolean"
+          },
+          "reference": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "format": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "maximum": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "exclusiveMaximum": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "minimum": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "exclusiveMinimum": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "maxLength": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "minLength": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "multipleOf": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "default": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny"
+          },
+          "readOnly": {
+            "type": "boolean"
+          },
+          "writeOnly": {
+            "type": "boolean"
+          },
+          "allOf": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema"
+            },
+            "nullable": true
+          },
+          "oneOf": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema"
+            },
+            "nullable": true
+          },
+          "anyOf": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema"
+            },
+            "nullable": true
+          },
+          "not": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema"
+          },
+          "required": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "items": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema"
+          },
+          "maxItems": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "minItems": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "uniqueItems": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema"
+            },
+            "nullable": true
+          },
+          "maxProperties": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "minProperties": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "additionalPropertiesAllowed": {
+            "type": "boolean"
+          },
+          "additionalProperties": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema"
+          },
+          "discriminator": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiDiscriminator"
+          },
+          "example": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny"
+          },
+          "enum": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny"
+            },
+            "nullable": true
+          },
+          "nullable": {
+            "type": "boolean"
+          },
+          "externalDocs": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiExternalDocs"
+          },
+          "deprecated": {
+            "type": "boolean"
+          },
+          "xml": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiXml"
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          },
+          "unresolvedReference": {
+            "type": "boolean"
+          },
+          "reference": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiServer": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "variables": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiServerVariable"
+            },
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiServerVariable": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "default": {
+            "type": "string",
+            "nullable": true
+          },
+          "enum": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiTag": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "externalDocs": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiExternalDocs"
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          },
+          "unresolvedReference": {
+            "type": "boolean"
+          },
+          "reference": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.OpenApiXml": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "namespace": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "prefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "attribute": {
+            "type": "boolean"
+          },
+          "wrapped": {
+            "type": "boolean"
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Microsoft.OpenApi.Models.ParameterLocation": {
+        "enum": [
+          "Query",
+          "Header",
+          "Path",
+          "Cookie"
+        ],
+        "type": "string"
+      },
+      "Microsoft.OpenApi.Models.ParameterStyle": {
+        "enum": [
+          "Matrix",
+          "Label",
+          "Form",
+          "Simple",
+          "SpaceDelimited",
+          "PipeDelimited",
+          "DeepObject"
+        ],
+        "type": "string"
+      },
+      "Microsoft.OpenApi.Models.ReferenceType": {
+        "enum": [
+          "Schema",
+          "Response",
+          "Parameter",
+          "Example",
+          "RequestBody",
+          "Header",
+          "SecurityScheme",
+          "Link",
+          "Callback",
+          "Tag"
+        ],
+        "type": "string"
+      },
+      "Microsoft.OpenApi.Models.RuntimeExpressionAnyWrapper": {
+        "type": "object",
+        "properties": {
+          "any": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny"
+          },
+          "expression": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Expressions.RuntimeExpression"
+          }
+        },
+        "additionalProperties": false
+      },
+      "System.Collections.Generic.KeyValuePair`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[Microsoft.OpenApi.Models.OpenApiCallback, Microsoft.OpenApi, Version=1.2.3.0, Culture=neutral, PublicKeyToken=3f5743946376f042]]": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.Models.OpenApiCallback"
+          }
+        },
+        "additionalProperties": false
       }
     },
     "securitySchemes": {

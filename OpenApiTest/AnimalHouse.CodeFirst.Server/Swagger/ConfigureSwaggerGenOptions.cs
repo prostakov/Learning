@@ -25,6 +25,8 @@ namespace AnimalHouse.CodeFirst.Server.Swagger
         
         public void Configure(SwaggerGenOptions options)
         {
+            options.UseOneOfForPolymorphism();
+
             // Add a custom operation filter which sets default values
             options.OperationFilter<SwaggerDefaultValues>();
 

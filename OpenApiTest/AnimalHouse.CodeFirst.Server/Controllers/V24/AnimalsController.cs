@@ -10,10 +10,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace AnimalHouse.CodeFirst.Server.Controllers.V23
+namespace AnimalHouse.CodeFirst.Server.Controllers.V24
 {
     [Authorize]
-    [ApiVersion("23.0")]
+    [ApiVersion("24.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class AnimalsController : ControllerBase
@@ -32,8 +32,6 @@ namespace AnimalHouse.CodeFirst.Server.Controllers.V23
         /// <response code="200">successful operation</response>
         /// <response code="400">Invalid tag value</response>
         [HttpGet]
-        [MapToApiVersion("23.0")]
-        [MapToApiVersion("23.4")]
         [Consumes("application/json")]
         [Produces("application/json")]
         [SwaggerOperation("GetAllAnimals")]
@@ -52,8 +50,6 @@ namespace AnimalHouse.CodeFirst.Server.Controllers.V23
         /// <response code="200">Successful operation</response>
         /// <response code="400">Invalid tag value</response>
         [HttpGet, Route("tags")]
-        [MapToApiVersion("23.0")]
-        [MapToApiVersion("23.4")]
         [Consumes("application/json")]
         [Produces("application/json")]
         [SwaggerOperation("FindAnimalsByTags")]
@@ -86,8 +82,6 @@ namespace AnimalHouse.CodeFirst.Server.Controllers.V23
         /// <response code="201">Successful operation</response>
         /// <response code="400">Request error</response>
         [HttpPost]
-        [MapToApiVersion("23.0")]
-        [MapToApiVersion("23.4")]
         [Consumes("application/json")]
         [Produces("application/json")]
         [SwaggerOperation("CreateNewAnimal")]
@@ -109,8 +103,6 @@ namespace AnimalHouse.CodeFirst.Server.Controllers.V23
         /// <response code="400">Request error</response>
         /// <response code="404">Not found error</response>
         [HttpPut]
-        [MapToApiVersion("23.0")]
-        [MapToApiVersion("23.4")]
         [Consumes("application/json")]
         [Produces("application/json")]
         [SwaggerOperation("UpdateAnimal")]
@@ -132,8 +124,6 @@ namespace AnimalHouse.CodeFirst.Server.Controllers.V23
         /// <response code="400">Request error</response>
         /// <response code="404">Not found error</response>
         [HttpDelete, Route("{id}")]
-        [MapToApiVersion("23.0")]
-        [MapToApiVersion("23.4")]
         [SwaggerOperation("DeleteAnimal")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorApiResponse))]

@@ -25,6 +25,7 @@ namespace AnimalHouse.Tests
             );
  
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+            Console.WriteLine(tokenString);
         }
     }
 }

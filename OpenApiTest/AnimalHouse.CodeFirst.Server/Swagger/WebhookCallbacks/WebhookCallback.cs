@@ -29,7 +29,7 @@ namespace AnimalHouse.CodeFirst.Server.Swagger.WebhookCallbacks
                     {
                         Reference = new OpenApiReference()
                         {
-                            Id = typeof(CreateOrUpdateVendorRequest).FullName,
+                            Id = nameof(CreateOrUpdateVendorRequest),
                             Type = ReferenceType.Schema
                         }
                     }

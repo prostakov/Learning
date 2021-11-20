@@ -26,10 +26,10 @@ paths:
                 type: array
                 items:
                   oneOf:
-                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
-                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
-                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
-                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
+                    - $ref: '#/components/schemas/Bird'
+                    - $ref: '#/components/schemas/Fish'
+                    - $ref: '#/components/schemas/Mammal'
+                    - $ref: '#/components/schemas/Reptile'
         '400':
           description: Invalid tag value
     post:
@@ -43,10 +43,10 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
-                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
-                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
-                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
+                - $ref: '#/components/schemas/Bird'
+                - $ref: '#/components/schemas/Fish'
+                - $ref: '#/components/schemas/Mammal'
+                - $ref: '#/components/schemas/Reptile'
       responses:
         '201':
           description: Successful operation
@@ -54,16 +54,16 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
-                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
-                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
-                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
+                  - $ref: '#/components/schemas/Bird'
+                  - $ref: '#/components/schemas/Fish'
+                  - $ref: '#/components/schemas/Mammal'
+                  - $ref: '#/components/schemas/Reptile'
         '400':
           description: Request error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
     put:
       tags:
         - Animals
@@ -75,10 +75,10 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
-                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
-                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
-                - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
+                - $ref: '#/components/schemas/Bird'
+                - $ref: '#/components/schemas/Fish'
+                - $ref: '#/components/schemas/Mammal'
+                - $ref: '#/components/schemas/Reptile'
       responses:
         '204':
           description: Successful operation
@@ -86,16 +86,16 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
-                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
-                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
-                  - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
+                  - $ref: '#/components/schemas/Bird'
+                  - $ref: '#/components/schemas/Fish'
+                  - $ref: '#/components/schemas/Mammal'
+                  - $ref: '#/components/schemas/Reptile'
         '400':
           description: Request error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
+                $ref: '#/components/schemas/ErrorApiResponse'
         '404':
           description: Not found error
           content:
@@ -126,16 +126,16 @@ paths:
                 type: array
                 items:
                   oneOf:
-                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
-                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
-                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
-                    - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
+                    - $ref: '#/components/schemas/Bird'
+                    - $ref: '#/components/schemas/Fish'
+                    - $ref: '#/components/schemas/Mammal'
+                    - $ref: '#/components/schemas/Reptile'
         '400':
           description: Invalid tag value
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails'
+                $ref: '#/components/schemas/ProblemDetails'
   '/api/v24/Animals/{id}':
     delete:
       tags:
@@ -162,13 +162,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
+                $ref: '#/components/schemas/ErrorApiResponse'
             application/json:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
+                $ref: '#/components/schemas/ErrorApiResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
+                $ref: '#/components/schemas/ErrorApiResponse'
         '404':
           description: Not found error
           content:
@@ -192,30 +192,30 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnimalHouse.Common.Models.Subscription'
+              $ref: '#/components/schemas/Subscription'
       responses:
         '204':
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.Common.Models.Subscription'
+                $ref: '#/components/schemas/Subscription'
         '400':
           description: Request error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
+                $ref: '#/components/schemas/ErrorApiResponse'
       callbacks:
         vendorNew:
           '{$request.body#/callbackUrl}/vendorNew':
             post:
               summary: Callback initiated when new vendor is created from VIC.AI admin panel.
-              description: "This request is sent when a user in Vic.ai adds a new vendor to the system.\r\n\r\nRequest body contains the vendor object.\r\n\r\nA 201 response indicates that the vendor object has been successfully persisted to the external system, and it must contain the external system's vendor object id as the externalId parameter.\r\n\r\nAny other response will be considered a failure, the vendor object externalId will not be specified, and the error message you specify will be surfaced to the user.\r\n\r\nA 400 response indicates a data validation error.\r\n\r\nThis callback will timeout after 5 seconds."
+              description: "This request is sent when a user in Vic.ai adds a new vendor to the system.\n\nRequest body contains the vendor object.\n\nA 201 response indicates that the vendor object has been successfully persisted to the external system, and it must contain the external system's vendor object id as the externalId parameter.\n\nAny other response will be considered a failure, the vendor object externalId will not be specified, and the error message you specify will be surfaced to the user.\n\nA 400 response indicates a data validation error.\n\nThis callback will timeout after 5 seconds."
               parameters:
                 - name: X-Request-Id
                   in: header
-                  description: Token to be able to correctly log associated requests
+                  description: Token to be able to correctly correlate associated requests
                   schema:
                     type: string
                     format: uuid
@@ -223,7 +223,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto.CreateOrUpdateVendorRequest'
+                      $ref: '#/components/schemas/CreateOrUpdateVendorRequest'
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully
@@ -239,7 +239,7 @@ paths:
               parameters:
                 - name: X-Request-Id
                   in: header
-                  description: Token to be able to correctly log associated requests
+                  description: Token to be able to correctly correlate associated requests
                   schema:
                     type: string
                     format: uuid
@@ -247,7 +247,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto.CreateOrUpdateVendorRequest'
+                      $ref: '#/components/schemas/CreateOrUpdateVendorRequest'
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully
@@ -263,7 +263,7 @@ paths:
               parameters:
                 - name: X-Request-Id
                   in: header
-                  description: Token to be able to correctly log associated requests
+                  description: Token to be able to correctly correlate associated requests
                   schema:
                     type: string
                     format: uuid
@@ -271,7 +271,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto.CreateOrUpdateVendorRequest'
+                      $ref: '#/components/schemas/CreateOrUpdateVendorRequest'
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully
@@ -287,7 +287,7 @@ paths:
               parameters:
                 - name: X-Request-Id
                   in: header
-                  description: Token to be able to correctly log associated requests
+                  description: Token to be able to correctly correlate associated requests
                   schema:
                     type: string
                     format: uuid
@@ -295,7 +295,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto.CreateOrUpdateVendorRequest'
+                      $ref: '#/components/schemas/CreateOrUpdateVendorRequest'
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully
@@ -329,13 +329,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
+                $ref: '#/components/schemas/ErrorApiResponse'
             application/json:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
+                $ref: '#/components/schemas/ErrorApiResponse'
             text/json:
               schema:
-                $ref: '#/components/schemas/AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse'
+                $ref: '#/components/schemas/ErrorApiResponse'
         '404':
           description: Not found error
           content:
@@ -350,22 +350,57 @@ paths:
                 type: string
 components:
   schemas:
-    AnimalHouse.CodeFirst.Server.Responses.ErrorApiResponse:
+    Animal:
+      required:
+        - discriminator
       type: object
       properties:
-        code:
-          type: integer
-          format: int32
-        message:
+        discriminator:
+          type: string
+        id:
+          type: string
+          format: uuid
+        name:
           type: string
           nullable: true
-        errors:
-          type: object
-          additionalProperties:
+        createdAt:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
             type: string
           nullable: true
       additionalProperties: false
-    AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto.CreateOrUpdateVendorRequest:
+      discriminator:
+        propertyName: discriminator
+        mapping:
+          Bird: '#/components/schemas/Bird'
+          Fish: '#/components/schemas/Fish'
+          Mammal: '#/components/schemas/Mammal'
+          Reptile: '#/components/schemas/Reptile'
+    AnyType:
+      enum:
+        - Primitive
+        - Null
+        - Array
+        - Object
+      type: string
+    Bird:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Animal'
+      properties:
+        birdType:
+          $ref: '#/components/schemas/BirdType'
+      additionalProperties: false
+    BirdType:
+      enum:
+        - None
+        - Parrot
+        - Peacock
+      type: string
+    CreateOrUpdateVendorRequest:
       type: object
       properties:
         name:
@@ -404,183 +439,77 @@ components:
           additionalProperties: { }
           nullable: true
       additionalProperties: false
-    AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.SubscriptionWebhookCallback:
+    ErrorApiResponse:
       type: object
       properties:
-        callbacks:
-          type: array
-          items:
-            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[Microsoft.OpenApi.Models.OpenApiCallback, Microsoft.OpenApi, Version=1.2.3.0, Culture=neutral, PublicKeyToken=3f5743946376f042]]'
-          nullable: true
-          readOnly: true
-        types:
-          type: array
-          items:
-            type: string
-          nullable: true
-          readOnly: true
-      additionalProperties: false
-    AnimalHouse.Common.Models.Animal:
-      required:
-        - discriminator
-      type: object
-      properties:
-        discriminator:
-          type: string
-        id:
-          type: string
-          format: uuid
-        name:
+        code:
+          type: integer
+          format: int32
+        message:
           type: string
           nullable: true
-        createdAt:
-          type: string
-          format: date-time
-        tags:
-          type: array
-          items:
+        errors:
+          type: object
+          additionalProperties:
             type: string
           nullable: true
       additionalProperties: false
-      discriminator:
-        propertyName: discriminator
-        mapping:
-          Bird: '#/components/schemas/AnimalHouse.Common.Models.Animals.Bird'
-          Fish: '#/components/schemas/AnimalHouse.Common.Models.Animals.Fish'
-          Mammal: '#/components/schemas/AnimalHouse.Common.Models.Animals.Mammal'
-          Reptile: '#/components/schemas/AnimalHouse.Common.Models.Animals.Reptile'
-    AnimalHouse.Common.Models.Animals.Bird:
+    Fish:
       type: object
       allOf:
-        - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
-      properties:
-        birdType:
-          $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.BirdType'
-      additionalProperties: false
-    AnimalHouse.Common.Models.Animals.BirdType:
-      enum:
-        - None
-        - Parrot
-        - Peacock
-      type: string
-    AnimalHouse.Common.Models.Animals.Fish:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
+        - $ref: '#/components/schemas/Animal'
       properties:
         fishType:
-          $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.FishType'
+          $ref: '#/components/schemas/FishType'
       additionalProperties: false
-    AnimalHouse.Common.Models.Animals.FishType:
+    FishType:
       enum:
         - None
         - SwordFish
         - ClownFish
       type: string
-    AnimalHouse.Common.Models.Animals.Mammal:
+    IOpenApiAny:
+      type: object
+      properties:
+        anyType:
+          $ref: '#/components/schemas/AnyType'
+      additionalProperties: false
+    IOpenApiExtension:
+      type: object
+      additionalProperties: false
+    Mammal:
       type: object
       allOf:
-        - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
+        - $ref: '#/components/schemas/Animal'
       properties:
         mammalType:
-          $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.MammalType'
+          $ref: '#/components/schemas/MammalType'
       additionalProperties: false
-    AnimalHouse.Common.Models.Animals.MammalType:
+    MammalType:
       enum:
         - None
         - Cat
         - Dog
       type: string
-    AnimalHouse.Common.Models.Animals.Reptile:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/AnimalHouse.Common.Models.Animal'
-      properties:
-        reptileType:
-          $ref: '#/components/schemas/AnimalHouse.Common.Models.Animals.ReptileType'
-      additionalProperties: false
-    AnimalHouse.Common.Models.Animals.ReptileType:
-      enum:
-        - None
-        - Lizard
-        - Turtle
-      type: string
-    AnimalHouse.Common.Models.Subscription:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        callbackUrl:
-          type: string
-          nullable: true
-        callbackToken:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Microsoft.AspNetCore.Mvc.ProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-      additionalProperties: { }
-    Microsoft.OpenApi.Any.AnyType:
-      enum:
-        - Primitive
-        - Null
-        - Array
-        - Object
-      type: string
-    Microsoft.OpenApi.Any.IOpenApiAny:
-      type: object
-      properties:
-        anyType:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Any.AnyType'
-      additionalProperties: false
-    Microsoft.OpenApi.Expressions.RuntimeExpression:
-      type: object
-      properties:
-        expression:
-          type: string
-          nullable: true
-          readOnly: true
-      additionalProperties: false
-    Microsoft.OpenApi.Interfaces.IOpenApiExtension:
-      type: object
-      additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiCallback:
+    OpenApiCallback:
       type: object
       properties:
         pathItems:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiPathItem'
+            $ref: '#/components/schemas/OpenApiPathItem'
           nullable: true
         unresolvedReference:
           type: boolean
         reference:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference'
+          $ref: '#/components/schemas/OpenApiReference'
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiDiscriminator:
+    OpenApiDiscriminator:
       type: object
       properties:
         propertyName:
@@ -592,7 +521,7 @@ components:
             type: string
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiEncoding:
+    OpenApiEncoding:
       type: object
       properties:
         contentType:
@@ -601,10 +530,10 @@ components:
         headers:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiHeader'
+            $ref: '#/components/schemas/OpenApiHeader'
           nullable: true
         style:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.ParameterStyle'
+          $ref: '#/components/schemas/ParameterStyle'
         explode:
           type: boolean
           nullable: true
@@ -614,10 +543,10 @@ components:
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiExample:
+    OpenApiExample:
       type: object
       properties:
         summary:
@@ -627,21 +556,21 @@ components:
           type: string
           nullable: true
         value:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny'
+          $ref: '#/components/schemas/IOpenApiAny'
         externalValue:
           type: string
           nullable: true
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
         reference:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference'
+          $ref: '#/components/schemas/OpenApiReference'
         unresolvedReference:
           type: boolean
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiExternalDocs:
+    OpenApiExternalDocs:
       type: object
       properties:
         description:
@@ -654,16 +583,16 @@ components:
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiHeader:
+    OpenApiHeader:
       type: object
       properties:
         unresolvedReference:
           type: boolean
         reference:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference'
+          $ref: '#/components/schemas/OpenApiReference'
         description:
           type: string
           nullable: true
@@ -674,32 +603,32 @@ components:
         allowEmptyValue:
           type: boolean
         style:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.ParameterStyle'
+          $ref: '#/components/schemas/ParameterStyle'
         explode:
           type: boolean
         allowReserved:
           type: boolean
         schema:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema'
+          $ref: '#/components/schemas/OpenApiSchema'
         example:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny'
+          $ref: '#/components/schemas/IOpenApiAny'
         examples:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiExample'
+            $ref: '#/components/schemas/OpenApiExample'
           nullable: true
         content:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiMediaType'
+            $ref: '#/components/schemas/OpenApiMediaType'
           nullable: true
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiLink:
+    OpenApiLink:
       type: object
       properties:
         operationRef:
@@ -711,55 +640,55 @@ components:
         parameters:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.RuntimeExpressionAnyWrapper'
+            $ref: '#/components/schemas/RuntimeExpressionAnyWrapper'
           nullable: true
         requestBody:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.RuntimeExpressionAnyWrapper'
+          $ref: '#/components/schemas/RuntimeExpressionAnyWrapper'
         description:
           type: string
           nullable: true
         server:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiServer'
+          $ref: '#/components/schemas/OpenApiServer'
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
         unresolvedReference:
           type: boolean
         reference:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference'
+          $ref: '#/components/schemas/OpenApiReference'
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiMediaType:
+    OpenApiMediaType:
       type: object
       properties:
         schema:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema'
+          $ref: '#/components/schemas/OpenApiSchema'
         example:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny'
+          $ref: '#/components/schemas/IOpenApiAny'
         examples:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiExample'
+            $ref: '#/components/schemas/OpenApiExample'
           nullable: true
         encoding:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiEncoding'
+            $ref: '#/components/schemas/OpenApiEncoding'
           nullable: true
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiOperation:
+    OpenApiOperation:
       type: object
       properties:
         tags:
           type: array
           items:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiTag'
+            $ref: '#/components/schemas/OpenApiTag'
           nullable: true
         summary:
           type: string
@@ -768,26 +697,26 @@ components:
           type: string
           nullable: true
         externalDocs:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiExternalDocs'
+          $ref: '#/components/schemas/OpenApiExternalDocs'
         operationId:
           type: string
           nullable: true
         parameters:
           type: array
           items:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiParameter'
+            $ref: '#/components/schemas/OpenApiParameter'
           nullable: true
         requestBody:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiRequestBody'
+          $ref: '#/components/schemas/OpenApiRequestBody'
         responses:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiResponse'
+            $ref: '#/components/schemas/OpenApiResponse'
           nullable: true
         callbacks:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiCallback'
+            $ref: '#/components/schemas/OpenApiCallback'
           nullable: true
         deprecated:
           type: boolean
@@ -803,26 +732,26 @@ components:
         servers:
           type: array
           items:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiServer'
+            $ref: '#/components/schemas/OpenApiServer'
           nullable: true
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiParameter:
+    OpenApiParameter:
       type: object
       properties:
         unresolvedReference:
           type: boolean
         reference:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference'
+          $ref: '#/components/schemas/OpenApiReference'
         name:
           type: string
           nullable: true
         in:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.ParameterLocation'
+          $ref: '#/components/schemas/ParameterLocation'
         description:
           type: string
           nullable: true
@@ -833,32 +762,32 @@ components:
         allowEmptyValue:
           type: boolean
         style:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.ParameterStyle'
+          $ref: '#/components/schemas/ParameterStyle'
         explode:
           type: boolean
         allowReserved:
           type: boolean
         schema:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema'
+          $ref: '#/components/schemas/OpenApiSchema'
         examples:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiExample'
+            $ref: '#/components/schemas/OpenApiExample'
           nullable: true
         example:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny'
+          $ref: '#/components/schemas/IOpenApiAny'
         content:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiMediaType'
+            $ref: '#/components/schemas/OpenApiMediaType'
           nullable: true
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiPathItem:
+    OpenApiPathItem:
       type: object
       properties:
         summary:
@@ -871,47 +800,47 @@ components:
           type: object
           properties:
             Get:
-              $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation'
+              $ref: '#/components/schemas/OpenApiOperation'
             Put:
-              $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation'
+              $ref: '#/components/schemas/OpenApiOperation'
             Post:
-              $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation'
+              $ref: '#/components/schemas/OpenApiOperation'
             Delete:
-              $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation'
+              $ref: '#/components/schemas/OpenApiOperation'
             Options:
-              $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation'
+              $ref: '#/components/schemas/OpenApiOperation'
             Head:
-              $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation'
+              $ref: '#/components/schemas/OpenApiOperation'
             Patch:
-              $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation'
+              $ref: '#/components/schemas/OpenApiOperation'
             Trace:
-              $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiOperation'
+              $ref: '#/components/schemas/OpenApiOperation'
           additionalProperties: false
           nullable: true
         servers:
           type: array
           items:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiServer'
+            $ref: '#/components/schemas/OpenApiServer'
           nullable: true
         parameters:
           type: array
           items:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiParameter'
+            $ref: '#/components/schemas/OpenApiParameter'
           nullable: true
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiReference:
+    OpenApiReference:
       type: object
       properties:
         externalResource:
           type: string
           nullable: true
         type:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.ReferenceType'
+          $ref: '#/components/schemas/ReferenceType'
         id:
           type: string
           nullable: true
@@ -930,13 +859,13 @@ components:
           nullable: true
           readOnly: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiRequestBody:
+    OpenApiRequestBody:
       type: object
       properties:
         unresolvedReference:
           type: boolean
         reference:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference'
+          $ref: '#/components/schemas/OpenApiReference'
         description:
           type: string
           nullable: true
@@ -945,15 +874,15 @@ components:
         content:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiMediaType'
+            $ref: '#/components/schemas/OpenApiMediaType'
           nullable: true
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiResponse:
+    OpenApiResponse:
       type: object
       properties:
         description:
@@ -962,29 +891,29 @@ components:
         headers:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiHeader'
+            $ref: '#/components/schemas/OpenApiHeader'
           nullable: true
         content:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiMediaType'
+            $ref: '#/components/schemas/OpenApiMediaType'
           nullable: true
         links:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiLink'
+            $ref: '#/components/schemas/OpenApiLink'
           nullable: true
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
         unresolvedReference:
           type: boolean
         reference:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference'
+          $ref: '#/components/schemas/OpenApiReference'
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiSchema:
+    OpenApiSchema:
       type: object
       properties:
         title:
@@ -1029,7 +958,7 @@ components:
           format: double
           nullable: true
         default:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny'
+          $ref: '#/components/schemas/IOpenApiAny'
         readOnly:
           type: boolean
         writeOnly:
@@ -1037,20 +966,20 @@ components:
         allOf:
           type: array
           items:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema'
+            $ref: '#/components/schemas/OpenApiSchema'
           nullable: true
         oneOf:
           type: array
           items:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema'
+            $ref: '#/components/schemas/OpenApiSchema'
           nullable: true
         anyOf:
           type: array
           items:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema'
+            $ref: '#/components/schemas/OpenApiSchema'
           nullable: true
         not:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema'
+          $ref: '#/components/schemas/OpenApiSchema'
         required:
           uniqueItems: true
           type: array
@@ -1058,7 +987,7 @@ components:
             type: string
           nullable: true
         items:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema'
+          $ref: '#/components/schemas/OpenApiSchema'
         maxItems:
           type: integer
           format: int32
@@ -1073,7 +1002,7 @@ components:
         properties:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema'
+            $ref: '#/components/schemas/OpenApiSchema'
           nullable: true
         maxProperties:
           type: integer
@@ -1086,35 +1015,35 @@ components:
         additionalPropertiesAllowed:
           type: boolean
         additionalProperties:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiSchema'
+          $ref: '#/components/schemas/OpenApiSchema'
         discriminator:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiDiscriminator'
+          $ref: '#/components/schemas/OpenApiDiscriminator'
         example:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny'
+          $ref: '#/components/schemas/IOpenApiAny'
         enum:
           type: array
           items:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny'
+            $ref: '#/components/schemas/IOpenApiAny'
           nullable: true
         nullable:
           type: boolean
         externalDocs:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiExternalDocs'
+          $ref: '#/components/schemas/OpenApiExternalDocs'
         deprecated:
           type: boolean
         xml:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiXml'
+          $ref: '#/components/schemas/OpenApiXml'
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
         unresolvedReference:
           type: boolean
         reference:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference'
+          $ref: '#/components/schemas/OpenApiReference'
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiServer:
+    OpenApiServer:
       type: object
       properties:
         description:
@@ -1126,15 +1055,15 @@ components:
         variables:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiServerVariable'
+            $ref: '#/components/schemas/OpenApiServerVariable'
           nullable: true
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiServerVariable:
+    OpenApiServerVariable:
       type: object
       properties:
         description:
@@ -1151,10 +1080,10 @@ components:
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiTag:
+    OpenApiTag:
       type: object
       properties:
         name:
@@ -1164,18 +1093,18 @@ components:
           type: string
           nullable: true
         externalDocs:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiExternalDocs'
+          $ref: '#/components/schemas/OpenApiExternalDocs'
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
         unresolvedReference:
           type: boolean
         reference:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiReference'
+          $ref: '#/components/schemas/OpenApiReference'
       additionalProperties: false
-    Microsoft.OpenApi.Models.OpenApiXml:
+    OpenApiXml:
       type: object
       properties:
         name:
@@ -1195,17 +1124,17 @@ components:
         extensions:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Microsoft.OpenApi.Interfaces.IOpenApiExtension'
+            $ref: '#/components/schemas/IOpenApiExtension'
           nullable: true
       additionalProperties: false
-    Microsoft.OpenApi.Models.ParameterLocation:
+    ParameterLocation:
       enum:
         - Query
         - Header
         - Path
         - Cookie
       type: string
-    Microsoft.OpenApi.Models.ParameterStyle:
+    ParameterStyle:
       enum:
         - Matrix
         - Label
@@ -1215,7 +1144,27 @@ components:
         - PipeDelimited
         - DeepObject
       type: string
-    Microsoft.OpenApi.Models.ReferenceType:
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    ReferenceType:
       enum:
         - Schema
         - Response
@@ -1228,22 +1177,73 @@ components:
         - Callback
         - Tag
       type: string
-    Microsoft.OpenApi.Models.RuntimeExpressionAnyWrapper:
+    Reptile:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Animal'
+      properties:
+        reptileType:
+          $ref: '#/components/schemas/ReptileType'
+      additionalProperties: false
+    ReptileType:
+      enum:
+        - None
+        - Lizard
+        - Turtle
+      type: string
+    RuntimeExpression:
+      type: object
+      properties:
+        expression:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    RuntimeExpressionAnyWrapper:
       type: object
       properties:
         any:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Any.IOpenApiAny'
+          $ref: '#/components/schemas/IOpenApiAny'
         expression:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Expressions.RuntimeExpression'
+          $ref: '#/components/schemas/RuntimeExpression'
       additionalProperties: false
-    'System.Collections.Generic.KeyValuePair`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[Microsoft.OpenApi.Models.OpenApiCallback, Microsoft.OpenApi, Version=1.2.3.0, Culture=neutral, PublicKeyToken=3f5743946376f042]]':
+    StringOpenApiCallbackKeyValuePair:
       type: object
       properties:
         key:
           type: string
           nullable: true
         value:
-          $ref: '#/components/schemas/Microsoft.OpenApi.Models.OpenApiCallback'
+          $ref: '#/components/schemas/OpenApiCallback'
+      additionalProperties: false
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        callbackUrl:
+          type: string
+          nullable: true
+        callbackToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SubscriptionWebhookCallback:
+      type: object
+      properties:
+        callbacks:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringOpenApiCallbackKeyValuePair'
+          nullable: true
+          readOnly: true
+        types:
+          type: array
+          items:
+            type: string
+          nullable: true
+          readOnly: true
       additionalProperties: false
   securitySchemes:
     Bearer:

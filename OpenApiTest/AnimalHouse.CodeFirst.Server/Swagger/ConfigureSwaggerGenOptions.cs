@@ -66,8 +66,10 @@ namespace AnimalHouse.CodeFirst.Server.Swagger
 
             options.IncludeXmlComments(GetXmlCommentsPath(), true);
 
-            // Provide a custom strategy for generating the unique Id's
-            options.CustomSchemaIds(x => x.FullName);
+            // Use this settings to generate schemas with full namespace name.
+            // For example: #/components/schemas/Animal >>> #/components/schemas/AnimalHouse.Common.Models.Animal.
+            // Note: if this is set - all the OpenApiReferences should also be set to full namespace name.
+            // options.CustomSchemaIds(x => x.FullName);
         }
 
         private static string GetXmlCommentsPath()

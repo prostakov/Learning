@@ -20,9 +20,9 @@ namespace AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto
         public string AddressPostalCode { get; set; }
         
         /// <summary>
-        /// Temperature in celcius
+        /// Country code in alpha-2 format
         /// </summary>
-        /// <example>25</example>
+        /// <example>US</example>
         public string CountryCode { get; set; }
     
         [Required]

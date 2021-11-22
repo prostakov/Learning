@@ -1238,9 +1238,9 @@ components:
           nullable: true
         countryCode:
           type: string
-          description: Temperature in celcius
+          description: Country code in alpha-2 format
           nullable: true
-          example: '25'
+          example: US
         currency:
           type: string
         confirmedAt:

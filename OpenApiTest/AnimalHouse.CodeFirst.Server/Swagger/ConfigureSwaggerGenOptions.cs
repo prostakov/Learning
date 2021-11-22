@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using AnimalHouse.CodeFirst.Server.Swagger.Attributes;
 using AnimalHouse.CodeFirst.Server.Swagger.Configuration;
 using AnimalHouse.CodeFirst.Server.Swagger.DocumentFilters;
 using AnimalHouse.CodeFirst.Server.Swagger.OperationFilters;
-using AnimalHouse.CodeFirst.Server.Swagger.SchemaFilters;
 using AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription;
 using AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;

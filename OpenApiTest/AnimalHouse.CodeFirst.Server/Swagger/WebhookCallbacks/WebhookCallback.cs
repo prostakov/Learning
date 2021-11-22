@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Expressions;
 using Microsoft.OpenApi.Models;
 
@@ -21,20 +22,24 @@ namespace AnimalHouse.CodeFirst.Server.Swagger.WebhookCallbacks
         
         public static OpenApiCallback CreateCallback(string name, string summary, string description)
         {
-            var requestBody = new OpenApiRequestBody();
-            requestBody.Content.Add(
-                "application/json", new OpenApiMediaType()
+            var requestBody = new OpenApiRequestBody
+            {
+                Required = true,
+                Content = new Dictionary<string, OpenApiMediaType>
                 {
-                    Schema = new OpenApiSchema()
+                    {"application/json", new OpenApiMediaType
                     {
-                        Reference = new OpenApiReference()
+                        Schema = new OpenApiSchema
                         {
-                            Id = nameof(CreateOrUpdateVendorRequest),
-                            Type = ReferenceType.Schema
+                            Reference = new OpenApiReference
+                            {
+                                Id = nameof(VendorCallback),
+                                Type = ReferenceType.Schema
+                            }
                         }
-                    }
+                    }}      
                 }
-            );
+            };
             
             return new OpenApiCallback()
             {

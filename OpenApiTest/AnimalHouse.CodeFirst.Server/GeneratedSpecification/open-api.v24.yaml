@@ -223,7 +223,8 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/CreateOrUpdateVendorRequest'
+                      $ref: '#/components/schemas/VendorCallback'
+                required: true
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully
@@ -247,7 +248,8 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/CreateOrUpdateVendorRequest'
+                      $ref: '#/components/schemas/VendorCallback'
+                required: true
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully
@@ -271,7 +273,8 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/CreateOrUpdateVendorRequest'
+                      $ref: '#/components/schemas/VendorCallback'
+                required: true
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully
@@ -295,7 +298,8 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/CreateOrUpdateVendorRequest'
+                      $ref: '#/components/schemas/VendorCallback'
+                required: true
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully
@@ -400,45 +404,6 @@ components:
         - Parrot
         - Peacock
       type: string
-    CreateOrUpdateVendorRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          nullable: true
-        email:
-          type: string
-          nullable: true
-        phone:
-          type: string
-          nullable: true
-        streetAddress:
-          type: string
-          nullable: true
-        addressCity:
-          type: string
-          nullable: true
-        addressState:
-          type: string
-          nullable: true
-        addressPostalCode:
-          type: string
-          nullable: true
-        countryCode:
-          type: string
-          nullable: true
-        currency:
-          type: string
-          nullable: true
-        confirmedAt:
-          type: string
-          format: date-time
-          nullable: true
-        additionalProperties:
-          type: object
-          additionalProperties: { }
-          nullable: true
-      additionalProperties: false
     ErrorApiResponse:
       type: object
       properties:
@@ -1244,6 +1209,48 @@ components:
             type: string
           nullable: true
           readOnly: true
+      additionalProperties: false
+    VendorCallback:
+      required:
+        - currency
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        streetAddress:
+          type: string
+          nullable: true
+        addressCity:
+          type: string
+          nullable: true
+        addressState:
+          type: string
+          nullable: true
+        addressPostalCode:
+          type: string
+          nullable: true
+        countryCode:
+          type: string
+          description: Temperature in celcius
+          nullable: true
+          example: '25'
+        currency:
+          type: string
+        confirmedAt:
+          type: string
+          format: date-time
+          nullable: true
+        additionalProperties:
+          type: object
+          additionalProperties: { }
+          nullable: true
       additionalProperties: false
   securitySchemes:
     Bearer:

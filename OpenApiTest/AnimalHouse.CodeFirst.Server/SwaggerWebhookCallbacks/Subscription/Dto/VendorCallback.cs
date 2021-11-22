@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto
 {
-    public class CreateOrUpdateVendorRequest
+    public class VendorCallback
     {
         public string Name { get; set; }
     
@@ -17,9 +18,14 @@ namespace AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto
         public string AddressState { get; set; }
     
         public string AddressPostalCode { get; set; }
-    
+        
+        /// <summary>
+        /// Temperature in celcius
+        /// </summary>
+        /// <example>25</example>
         public string CountryCode { get; set; }
     
+        [Required]
         public string Currency { get; set; }
     
         public System.DateTimeOffset? ConfirmedAt { get; set; }

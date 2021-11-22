@@ -389,10 +389,11 @@
                   "content": {
                     "application/json": {
                       "schema": {
-                        "$ref": "#/components/schemas/CreateOrUpdateVendorRequest"
+                        "$ref": "#/components/schemas/VendorCallback"
                       }
                     }
-                  }
+                  },
+                  "required": true
                 },
                 "responses": {
                   "200": {
@@ -428,10 +429,11 @@
                   "content": {
                     "application/json": {
                       "schema": {
-                        "$ref": "#/components/schemas/CreateOrUpdateVendorRequest"
+                        "$ref": "#/components/schemas/VendorCallback"
                       }
                     }
-                  }
+                  },
+                  "required": true
                 },
                 "responses": {
                   "200": {
@@ -467,10 +469,11 @@
                   "content": {
                     "application/json": {
                       "schema": {
-                        "$ref": "#/components/schemas/CreateOrUpdateVendorRequest"
+                        "$ref": "#/components/schemas/VendorCallback"
                       }
                     }
-                  }
+                  },
+                  "required": true
                 },
                 "responses": {
                   "200": {
@@ -506,10 +509,11 @@
                   "content": {
                     "application/json": {
                       "schema": {
-                        "$ref": "#/components/schemas/CreateOrUpdateVendorRequest"
+                        "$ref": "#/components/schemas/VendorCallback"
                       }
                     }
-                  }
+                  },
+                  "required": true
                 },
                 "responses": {
                   "200": {
@@ -674,58 +678,6 @@
           "Peacock"
         ],
         "type": "string"
-      },
-      "CreateOrUpdateVendorRequest": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "nullable": true
-          },
-          "streetAddress": {
-            "type": "string",
-            "nullable": true
-          },
-          "addressCity": {
-            "type": "string",
-            "nullable": true
-          },
-          "addressState": {
-            "type": "string",
-            "nullable": true
-          },
-          "addressPostalCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "countryCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "currency": {
-            "type": "string",
-            "nullable": true
-          },
-          "confirmedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "additionalProperties": {
-            "type": "object",
-            "additionalProperties": { },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
       },
       "ErrorApiResponse": {
         "type": "object",
@@ -1858,6 +1810,62 @@
             },
             "nullable": true,
             "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VendorCallback": {
+        "required": [
+          "currency"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "streetAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressState": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressPostalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "Temperature in celcius",
+            "nullable": true,
+            "example": "25"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "confirmedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
           }
         },
         "additionalProperties": false

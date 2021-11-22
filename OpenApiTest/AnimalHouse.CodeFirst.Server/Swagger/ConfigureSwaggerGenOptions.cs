@@ -5,6 +5,7 @@ using System.Reflection;
 using AnimalHouse.CodeFirst.Server.Swagger.Configuration;
 using AnimalHouse.CodeFirst.Server.Swagger.DocumentFilters;
 using AnimalHouse.CodeFirst.Server.Swagger.OperationFilters;
+using AnimalHouse.CodeFirst.Server.Swagger.SchemaFilters;
 using AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription;
 using AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -29,6 +30,8 @@ namespace AnimalHouse.CodeFirst.Server.Swagger
         public void Configure(SwaggerGenOptions options)
         {
             options.UseOneOfForPolymorphism();
+            
+            options.SchemaFilter<OpenApiFormatFilter>();
 
             options.DocumentFilter<CustomModelDocumentFilter<SubscriptionWebhookCallback>>();
             options.DocumentFilter<CustomModelDocumentFilter<VendorCallback>>();

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using AnimalHouse.CodeFirst.Server.Swagger.Attributes;
 
 namespace AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto
 {
@@ -36,7 +37,9 @@ namespace AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto
         /// <summary>
         /// Currency code
         /// </summary>
+        /// <example>USD</example>
         [Required]
+        [OpenApiFormat("ISO-4217")]
         public string Currency { get; set; }
     
         public System.DateTimeOffset? ConfirmedAt { get; set; }

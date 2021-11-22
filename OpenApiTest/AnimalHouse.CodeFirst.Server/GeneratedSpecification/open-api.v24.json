@@ -1816,46 +1816,47 @@
       },
       "VendorCallback": {
         "required": [
-          "currency"
+          "addressCity",
+          "addressPostalCode",
+          "addressState",
+          "countryCode",
+          "currency",
+          "email",
+          "name",
+          "phone",
+          "streetAddress"
         ],
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "phone": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "streetAddress": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "addressCity": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "addressState": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "addressPostalCode": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "countryCode": {
             "type": "string",
             "description": "Country code in alpha-2 format",
-            "nullable": true,
             "example": "US"
           },
           "currency": {
-            "type": "string"
+            "type": "string",
+            "description": "Currency code"
           },
           "confirmedAt": {
             "type": "string",

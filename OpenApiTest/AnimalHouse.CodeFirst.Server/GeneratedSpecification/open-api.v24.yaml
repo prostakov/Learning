@@ -1212,37 +1212,38 @@ components:
       additionalProperties: false
     VendorCallback:
       required:
+        - addressCity
+        - addressPostalCode
+        - addressState
+        - countryCode
         - currency
+        - email
+        - name
+        - phone
+        - streetAddress
       type: object
       properties:
         name:
           type: string
-          nullable: true
         email:
           type: string
-          nullable: true
         phone:
           type: string
-          nullable: true
         streetAddress:
           type: string
-          nullable: true
         addressCity:
           type: string
-          nullable: true
         addressState:
           type: string
-          nullable: true
         addressPostalCode:
           type: string
-          nullable: true
         countryCode:
           type: string
           description: Country code in alpha-2 format
-          nullable: true
           example: US
         currency:
           type: string
+          description: Currency code
         confirmedAt:
           type: string
           format: date-time

@@ -12,13 +12,13 @@ namespace AnimalHouse.CodeFirst.Server.Swagger.OperationFilters
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
-            var webhookAttribute = context.MethodInfo.GetCustomAttributes<SwaggerWebhookCallbackSchemaAttribute>().FirstOrDefault();
+            var webhookAttribute = context.MethodInfo.GetCustomAttributes<OpenApiWebhookCallbackSchemaAttribute>().FirstOrDefault();
             if (webhookAttribute != null)
             {
-                var webhookCallback = (WebhookCallback) Activator.CreateInstance(webhookAttribute.SchemaType);
-
-                foreach (var (name, callback) in webhookCallback!.Callbacks) 
-                    operation.Callbacks.Add(name, callback);
+                var webhookCallback = (WebhookCallbackDefinition) Activator.CreateInstance(webhookAttribute.SchemaType);
+                
+                foreach (var (name, callbackGetter) in webhookCallback!.Callbacks) 
+                    operation.Callbacks.Add(name, callbackGetter.Callback);
             }
         }
     }

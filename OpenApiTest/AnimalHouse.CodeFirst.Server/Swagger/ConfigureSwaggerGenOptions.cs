@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using AnimalHouse.CodeFirst.Server.Swagger.Configuration;
-using AnimalHouse.CodeFirst.Server.Swagger.DocumentFilters;
+using AnimalHouse.CodeFirst.Server.Swagger.Extensions;
 using AnimalHouse.CodeFirst.Server.Swagger.OperationFilters;
 using AnimalHouse.CodeFirst.Server.Swagger.SchemaFilters;
 using AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription;
-using AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -33,11 +32,10 @@ namespace AnimalHouse.CodeFirst.Server.Swagger
             
             options.SchemaFilter<OpenApiFormatFilter>();
 
-            options.DocumentFilter<CustomModelDocumentFilter<SubscriptionWebhookCallback>>();
-            options.DocumentFilter<CustomModelDocumentFilter<VendorCallback>>();
-
             options.OperationFilter<SwaggerDefaultValues>();
             options.OperationFilter<WebhookCallbacksOperationFilter>();
+            
+            options.RegisterCallbackDefinition<SubscriptionWebhookCallbackDefinition>();
 
             // Add a swagger document for each discovered API version
             // Note: you might choose to skip or document deprecated API versions differently

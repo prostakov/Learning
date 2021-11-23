@@ -369,11 +369,11 @@
           }
         },
         "callbacks": {
-          "vendorNew": {
+          "New Vendor": {
             "{$request.body#/callbackUrl}/vendorNew": {
               "post": {
                 "summary": "Callback initiated when new vendor is created from VIC.AI admin panel.",
-                "description": "This request is sent when a user in Vic.ai adds a new vendor to the system.\n\nRequest body contains the vendor object.\n\nA 201 response indicates that the vendor object has been successfully persisted to the external system, and it must contain the external system's vendor object id as the externalId parameter.\n\nAny other response will be considered a failure, the vendor object externalId will not be specified, and the error message you specify will be surfaced to the user.\n\nA 400 response indicates a data validation error.\n\nThis callback will timeout after 5 seconds.",
+                "description": "This request is sent when a user in Vic.ai adds a new vendor to the system.\r\n\r\nRequest body contains the vendor object.\r\n\r\nA 201 response indicates that the vendor object has been successfully persisted to the external system, and it must contain the external system's vendor object id as the externalId parameter.\r\n\r\nAny other response will be considered a failure, the vendor object externalId will not be specified, and the error message you specify will be surfaced to the user.\r\n\r\nA 400 response indicates a data validation error.\r\n\r\nThis callback will timeout after 5 seconds.",
                 "parameters": [
                   {
                     "name": "X-Request-Id",
@@ -396,139 +396,43 @@
                   "required": true
                 },
                 "responses": {
-                  "200": {
-                    "description": "Your server implementation should return this HTTP status code if the data was received successfully"
+                  "201": {
+                    "description": "Your server implementation should return this HTTP status code if the data was received successfully",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SuccessfulUpsertApiResponse"
+                        }
+                      }
+                    }
                   },
                   "4xx": {
-                    "description": "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. No retries are attempted."
+                    "description": "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. No retries are attempted.",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SuccessfulUpsertApiResponse"
+                        }
+                      }
+                    }
                   },
                   "5xx": {
-                    "description": "If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. No retries are attempted."
+                    "description": "If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. No retries are attempted.",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SuccessfulUpsertApiResponse"
+                        }
+                      }
+                    }
                   }
                 }
               }
             }
           },
-          "invoicePost": {
-            "{$request.body#/callbackUrl}/invoicePost": {
-              "post": {
-                "summary": "",
-                "description": "",
-                "parameters": [
-                  {
-                    "name": "X-Request-Id",
-                    "in": "header",
-                    "description": "Token to be able to correctly correlate associated requests",
-                    "schema": {
-                      "type": "string",
-                      "format": "uuid"
-                    }
-                  }
-                ],
-                "requestBody": {
-                  "content": {
-                    "application/json": {
-                      "schema": {
-                        "$ref": "#/components/schemas/VendorCallback"
-                      }
-                    }
-                  },
-                  "required": true
-                },
-                "responses": {
-                  "200": {
-                    "description": "Your server implementation should return this HTTP status code if the data was received successfully"
-                  },
-                  "4xx": {
-                    "description": "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. No retries are attempted."
-                  },
-                  "5xx": {
-                    "description": "If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. No retries are attempted."
-                  }
-                }
-              }
-            }
-          },
-          "invoiceTransfer": {
-            "{$request.body#/callbackUrl}/invoiceTransfer": {
-              "post": {
-                "summary": "",
-                "description": "",
-                "parameters": [
-                  {
-                    "name": "X-Request-Id",
-                    "in": "header",
-                    "description": "Token to be able to correctly correlate associated requests",
-                    "schema": {
-                      "type": "string",
-                      "format": "uuid"
-                    }
-                  }
-                ],
-                "requestBody": {
-                  "content": {
-                    "application/json": {
-                      "schema": {
-                        "$ref": "#/components/schemas/VendorCallback"
-                      }
-                    }
-                  },
-                  "required": true
-                },
-                "responses": {
-                  "200": {
-                    "description": "Your server implementation should return this HTTP status code if the data was received successfully"
-                  },
-                  "4xx": {
-                    "description": "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. No retries are attempted."
-                  },
-                  "5xx": {
-                    "description": "If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. No retries are attempted."
-                  }
-                }
-              }
-            }
-          },
-          "syncRequest": {
-            "{$request.body#/callbackUrl}/syncRequest": {
-              "post": {
-                "summary": "",
-                "description": "",
-                "parameters": [
-                  {
-                    "name": "X-Request-Id",
-                    "in": "header",
-                    "description": "Token to be able to correctly correlate associated requests",
-                    "schema": {
-                      "type": "string",
-                      "format": "uuid"
-                    }
-                  }
-                ],
-                "requestBody": {
-                  "content": {
-                    "application/json": {
-                      "schema": {
-                        "$ref": "#/components/schemas/VendorCallback"
-                      }
-                    }
-                  },
-                  "required": true
-                },
-                "responses": {
-                  "200": {
-                    "description": "Your server implementation should return this HTTP status code if the data was received successfully"
-                  },
-                  "4xx": {
-                    "description": "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. No retries are attempted."
-                  },
-                  "5xx": {
-                    "description": "If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. No retries are attempted."
-                  }
-                }
-              }
-            }
-          }
+          "Post Invoice": { },
+          "Transfer Invoice": { },
+          "Sync Request": { }
         }
       }
     },
@@ -727,6 +631,24 @@
         "properties": {
           "anyType": {
             "$ref": "#/components/schemas/AnyType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IOpenApiCallbackGetter": {
+        "type": "object",
+        "properties": {
+          "callback": {
+            "$ref": "#/components/schemas/OpenApiCallback"
+          },
+          "types": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -1761,7 +1683,7 @@
         },
         "additionalProperties": false
       },
-      "StringOpenApiCallbackKeyValuePair": {
+      "StringIOpenApiCallbackGetterKeyValuePair": {
         "type": "object",
         "properties": {
           "key": {
@@ -1769,7 +1691,7 @@
             "nullable": true
           },
           "value": {
-            "$ref": "#/components/schemas/OpenApiCallback"
+            "$ref": "#/components/schemas/IOpenApiCallbackGetter"
           }
         },
         "additionalProperties": false
@@ -1792,13 +1714,13 @@
         },
         "additionalProperties": false
       },
-      "SubscriptionWebhookCallback": {
+      "SubscriptionWebhookCallbackDefinition": {
         "type": "object",
         "properties": {
           "callbacks": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StringOpenApiCallbackKeyValuePair"
+              "$ref": "#/components/schemas/StringIOpenApiCallbackGetterKeyValuePair"
             },
             "nullable": true,
             "readOnly": true
@@ -1810,6 +1732,20 @@
             },
             "nullable": true,
             "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SuccessfulUpsertApiResponse": {
+        "type": "object",
+        "properties": {
+          "externalId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "externalUpdatedAt": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false

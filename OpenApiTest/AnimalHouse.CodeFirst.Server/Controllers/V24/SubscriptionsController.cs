@@ -36,7 +36,7 @@ namespace AnimalHouse.CodeFirst.Server.Controllers.V24
         [SwaggerOperation("UpdateSubscription")]
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(Subscription))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorApiResponse))]
-        [SwaggerWebhookCallbackSchema(typeof(SubscriptionWebhookCallback))]
+        [OpenApiWebhookCallbackSchema(typeof(SubscriptionWebhookCallbackDefinition))]
         public async Task<IActionResult> CreateOrUpdate([FromBody] Subscription subscription)
         {
             await _repository.CreateOrUpdate(subscription);

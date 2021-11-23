@@ -227,7 +227,7 @@ paths:
                 required: true
               responses:
                 '201':
-                  description: Your server implementation should return this HTTP status code if the data was received successfully
+                  description: Successful upsert
                   content:
                     application/json:
                       schema:
@@ -248,7 +248,7 @@ paths:
         Post Invoice:
           '{$request.body#/callbackUrl}/invoicePost':
             post:
-              summary: Callback initiated when new invoice is being posted from VIC.AI admin panel.
+              summary: Callback initiated when new invoice is being created from VIC.AI admin panel.
               description: "This request is sent when a user in Vic.ai posts an invoice object to the system.\r\n\r\nRequest body contains the invoice object (invoiceData part) as JSON, and corresponding invoice documents as a pdf file (invoicePayload part) as multipart form data. This will always be a pdf file.\r\n\r\nA 201 response indicates that the invoice object has been successfully persisted to the external system, and it must contain the external system's invoice object id as the externalId parameter.\r\n\r\nA 202 response indicates that the receipt of the invoice object has been acknowledged; an asynchronous update will occur via invoiceConfirm operationId; the supplied 'X-Request-Id' in the request header will be provided as the X-Request-Id header for any associated asynchronous updates.\r\n\r\nAny other response will be considered a failure, the invoice object externalId will not be specified, and the error message you specify will be surfaced to the user.\r\n\r\nA 400 response indicates a data validation error.\r\n\r\nThis callback will timeout after 5 seconds; to prevent inconsistencies, if the request will take longer than 5 seconds, it is appropriate to respond with a 202 response code."
               parameters:
                 - name: X-Request-Id
@@ -276,7 +276,7 @@ paths:
                 required: true
               responses:
                 '201':
-                  description: Your server implementation should return this HTTP status code if the data was received successfully
+                  description: Successful upsert
                   content:
                     application/json:
                       schema:
@@ -295,8 +295,67 @@ paths:
                     application/json:
                       schema:
                         $ref: '#/components/schemas/ErrorApiResponse'
-        Transfer Invoice: { }
-        Sync Request: { }
+        Transfer Invoice:
+          '{$request.body#/callbackUrl}/invoiceTransfer':
+            post:
+              summary: Callback initiated when new invoice is being posted from VIC.AI admin panel.
+              description: "This request is sent when a user in Vic.ai selects and invoice document and transfers it to the external system. Note: there will be no Vic.ai generated invoice data sent with this a transferred invoice.\r\n\r\nRequest body contains the invoice document.\r\n\r\nA 201 response indicates that the invoice document has been successfully transferred to the external system, and it must contain the external system's invoice document id as the externalId parameter.\r\n\r\nA 202 response indicates that the receipt of the invoice transfer has been acknowledged; an asynchronous update will occur via invoiceConfirm operationId; the supplied 'X-Request-Id' in the request header will be provided as the X-Request-Id header for any associated asynchronous updates.\r\n\r\nAny other response will be considered a failure, the invoice object externalId will not be specified, and the error message you specify will be surfaced to the user.\r\n\r\nA 400 response indicates a data validation error.\r\n\r\nThis callback will timeout after 5 seconds; to prevent inconsistencies, if the request will take longer than 5 seconds, it is appropriate to respond with a 202 response code."
+              parameters:
+                - name: X-Request-Id
+                  in: header
+                  description: Token to be able to correctly correlate associated requests
+                  schema:
+                    type: string
+                    format: uuid
+              requestBody:
+                content:
+                  application/pdf:
+                    schema:
+                      type: string
+                      format: binary
+                required: true
+              responses:
+                '201':
+                  description: Successful upsert
+                  content:
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/SuccessfulUpsertApiResponse'
+                '202':
+                  description: 'Deferred post, confirmation asynchronous'
+                default:
+                  description: Unexpected error
+                  content:
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/ErrorApiResponse'
+        Sync Request:
+          '{$request.body#/callbackUrl}/syncRequest':
+            post:
+              summary: Callback initiated sync master data is triggered from VIC.AI admin panel.
+              description: "This request is sent when a user in Vic.ai triggers a sync of all masterdata.\r\n\r\nIn response to this message, you’re expected to post masterdata (vendors, GL accounts, dimensions) into Vic.ai using the respective routes. You may perform a partial update, determining which data to update using queries.\r\n\r\nOnce this process is completed, perform a syncUpdate patch, passing the syncId, which will allow Vic.ai to mark the user's sync action as completed with the 'complete' operation. If you cannot complete this process before the specified timeout, then perform a syncUpdate patch with the 'extend' operation, which will extend the timeout for the update. If the timeout expires before a 'complete' action has been sent, then the request will be marked as 'failed'.\r\n\r\nThe body of the syncRequest contains the requestId; this is a token that should be returned with all upsert actions associated with this syncRequest.\r\n\r\nA 200 response indicates that the request has been acknowledged and informs the user that the sync has been successfully triggered."
+              parameters:
+                - name: X-Request-Id
+                  in: header
+                  description: Token to be able to correctly correlate associated requests
+                  schema:
+                    type: string
+                    format: uuid
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/RequestIdCallback'
+                required: true
+              responses:
+                '200':
+                  description: Request acknowleged
+                default:
+                  description: Request unservicable
+                  content:
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/ErrorApiResponse'
   '/api/v24/Subscriptions/{id}':
     delete:
       tags:
@@ -1196,6 +1255,13 @@ components:
         - Lizard
         - Turtle
       type: string
+    RequestIdCallback:
+      type: object
+      properties:
+        externalId:
+          type: string
+          format: uuid
+      additionalProperties: false
     RuntimeExpression:
       type: object
       properties:

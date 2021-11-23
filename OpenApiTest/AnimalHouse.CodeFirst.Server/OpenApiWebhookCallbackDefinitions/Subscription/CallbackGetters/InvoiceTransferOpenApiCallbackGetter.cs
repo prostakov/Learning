@@ -43,7 +43,11 @@ namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscri
             }
         };
         
-        public HashSet<Type> Types => new HashSet<Type>();
+        public HashSet<Type> Types => new()
+        {
+            typeof(SuccessfulUpsertApiResponse),
+            typeof(ErrorApiResponse)
+        };
         
         private static OpenApiRequestBody GetRequestBody()
         {

@@ -14,6 +14,12 @@
     },
     "version": "24.0"
   },
+  "servers": [
+    {
+      "url": "https://pai-api.propell.ai",
+      "description": "Production server, US"
+    }
+  ],
   "paths": {
     "/api/v24/Animals": {
       "get": {

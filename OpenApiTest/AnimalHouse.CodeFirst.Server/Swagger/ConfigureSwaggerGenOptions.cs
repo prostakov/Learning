@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using AnimalHouse.CodeFirst.Server.Extensions;
 using AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription;
 using AnimalHouse.CodeFirst.Server.Swagger.Configuration;
 using AnimalHouse.CodeFirst.Server.Swagger.Extensions;
@@ -42,6 +43,9 @@ namespace AnimalHouse.CodeFirst.Server.Swagger
             {
                 options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
             }
+            
+            // Add servers
+            AddServersInfo(options);
 
             // Auth scheme
             options.AddSecurityDefinition("Bearer",
@@ -103,6 +107,23 @@ namespace AnimalHouse.CodeFirst.Server.Swagger
                 info.Description += " ** THIS API VERSION HAS BEEN DEPRECATED!";
 
             return info;
+        }
+
+        private void AddServersInfo(SwaggerGenOptions options)
+        {
+            if (HostingExtensions.IsDevelopmentEnvironment)
+            {
+                options.AddServer(new OpenApiServer
+                {
+                    Url = "https://localhost:5001",
+                    Description = "Development"
+                });    
+            }
+            options.AddServer(new OpenApiServer
+            {
+                Url = "https://pai-api.propell.ai",
+                Description = "Production server, US"
+            });
         }
     }
 }

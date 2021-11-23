@@ -10,6 +10,9 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: '24.0'
+servers:
+  - url: https://pai-api.propell.ai
+    description: 'Production server, US'
 paths:
   /api/v24/Animals:
     get:

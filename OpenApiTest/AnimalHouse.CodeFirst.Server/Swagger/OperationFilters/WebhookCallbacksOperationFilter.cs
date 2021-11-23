@@ -15,9 +15,9 @@ namespace AnimalHouse.CodeFirst.Server.Swagger.OperationFilters
             var webhookAttribute = context.MethodInfo.GetCustomAttributes<OpenApiWebhookCallbackSchemaAttribute>().FirstOrDefault();
             if (webhookAttribute != null)
             {
-                var webhookCallback = (WebhookCallbackDefinition) Activator.CreateInstance(webhookAttribute.SchemaType);
+                var webhookCallbackDefinition = (WebhookCallbackDefinition) Activator.CreateInstance(webhookAttribute.SchemaType);
                 
-                foreach (var (name, callbackGetter) in webhookCallback!.Callbacks) 
+                foreach (var (name, callbackGetter) in webhookCallbackDefinition!.Callbacks) 
                     operation.Callbacks.Add(name, callbackGetter.Callback);
             }
         }

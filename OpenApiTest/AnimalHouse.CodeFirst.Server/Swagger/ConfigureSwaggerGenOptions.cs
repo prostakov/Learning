@@ -31,8 +31,7 @@ namespace AnimalHouse.CodeFirst.Server.Swagger
             options.UseOneOfForPolymorphism();
             
             options.SchemaFilter<OpenApiFormatFilter>();
-
-            options.OperationFilter<SwaggerDefaultValues>();
+            
             options.OperationFilter<WebhookCallbacksOperationFilter>();
             
             options.RegisterCallbackDefinition<SubscriptionWebhookCallbackDefinition>();

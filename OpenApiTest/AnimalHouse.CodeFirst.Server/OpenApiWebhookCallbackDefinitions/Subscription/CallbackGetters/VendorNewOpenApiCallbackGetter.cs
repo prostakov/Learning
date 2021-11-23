@@ -32,7 +32,7 @@ namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscri
                                     {
                                         {"201", OpenApiExtensions.GetResponseBody<SuccessfulUpsertApiResponse>(
                                             "Your server implementation should return this HTTP status code if the data was received successfully")},
-                                        {"202", OpenApiExtensions.GetResponseBody<string>("Acknowledge receipt", contentType: "text/plain", example: "ok")},
+                                        {"202", OpenApiExtensions.GetStringResponseBody("Acknowledge receipt", contentType: "text/plain", example: "ok")},
                                         {"default", OpenApiExtensions.GetResponseBody<ErrorApiResponse>("Unexpected error")},
                                     },
                                     Parameters = new List<OpenApiParameter> { RequestIdParameter }
@@ -53,12 +53,17 @@ namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscri
 
         private string Description => 
             "This request is sent when a user in Vic.ai adds a new vendor to the system." + LineBreak +
-            "Request body contains the vendor object." + LineBreak + 
+            
+            "Request body contains the vendor object." + LineBreak +
+            
             "A 201 response indicates that the vendor object has been successfully persisted to the external system, " +
-            "and it must contain the external system's vendor object id as the externalId parameter." + LineBreak + 
+            "and it must contain the external system's vendor object id as the externalId parameter." + LineBreak +
+            
             "Any other response will be considered a failure, the vendor object externalId will not be specified, " +
-            "and the error message you specify will be surfaced to the user." + LineBreak + 
-            "A 400 response indicates a data validation error." + LineBreak + 
+            "and the error message you specify will be surfaced to the user." + LineBreak +
+            
+            "A 400 response indicates a data validation error." + LineBreak +
+            
             "This callback will timeout after 5 seconds.";
     }
 }

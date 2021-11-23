@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription.Dto;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
@@ -27,7 +28,7 @@ namespace AnimalHouse.CodeFirst.Server.Swagger.Extensions
                 }
             };
         }
-        
+
         public static OpenApiResponse GetResponseBody<T>(string description, 
                                                          string contentType = "application/json",
                                                          object example = null) => new()
@@ -46,6 +47,31 @@ namespace AnimalHouse.CodeFirst.Server.Swagger.Extensions
                                 Id = typeof(T).Name,
                                 Type = ReferenceType.Schema
                             }
+                        },
+                        Example = example switch
+                        {
+                            string s => new OpenApiString(s),
+                            _ => null
+                        }
+                    }
+                }
+            }
+        };
+        
+        public static OpenApiResponse GetStringResponseBody(string description, 
+                                                            string contentType = "application/json", 
+                                                            object example = null) => new()
+        {
+            Description = description,
+            Content = new Dictionary<string, OpenApiMediaType>
+            {
+                {
+                    contentType, 
+                    new OpenApiMediaType 
+                    {
+                        Schema = new OpenApiSchema
+                        {
+                            Type = "string"
                         },
                         Example = example switch
                         {

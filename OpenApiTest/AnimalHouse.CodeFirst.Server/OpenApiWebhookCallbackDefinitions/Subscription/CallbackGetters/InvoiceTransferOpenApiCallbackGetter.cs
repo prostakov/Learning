@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using AnimalHouse.CodeFirst.Server.Swagger.WebhookCallbacks;
 using Microsoft.OpenApi.Models;
 
-namespace AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.CallbackGetters
+namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription.CallbackGetters
 {
-    public class InvoicePostApiCallbackGetter : SubscriptionCallbackGetterBase, IOpenApiCallbackGetter
+    public class InvoiceTransferOpenApiCallbackGetter : SubscriptionCallbackGetterBase, IOpenApiCallbackGetter
     {
-        public const string Name = "invoicePost";
+        public const string Name = "invoiceTransfer";
         public OpenApiCallback Callback => new OpenApiCallback();
         public HashSet<Type> Types => new HashSet<Type>();
     }

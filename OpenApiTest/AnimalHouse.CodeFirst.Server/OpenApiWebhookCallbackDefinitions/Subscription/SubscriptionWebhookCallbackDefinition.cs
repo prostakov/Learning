@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription.CallbackGetters;
 using AnimalHouse.CodeFirst.Server.Swagger.WebhookCallbacks;
-using AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.CallbackGetters;
 
-namespace AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription
+namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription
 {
     public class SubscriptionWebhookCallbackDefinition : WebhookCallbackDefinition
     {

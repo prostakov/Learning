@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription;
 using AnimalHouse.CodeFirst.Server.Responses;
 using AnimalHouse.CodeFirst.Server.Swagger.Attributes;
-using AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription;
 using AnimalHouse.Common.Models;
 using AnimalHouse.Common.Repositories;
 using Microsoft.AspNetCore.Http;

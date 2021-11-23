@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
+using AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription.Dto;
 using AnimalHouse.CodeFirst.Server.Swagger.Extensions;
 using AnimalHouse.CodeFirst.Server.Swagger.WebhookCallbacks;
-using AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto;
 using Microsoft.OpenApi.Expressions;
 using Microsoft.OpenApi.Models;
 
-namespace AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.CallbackGetters
+namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription.CallbackGetters
 {
     public class VendorNewOpenApiCallbackGetter : SubscriptionCallbackGetterBase, IOpenApiCallbackGetter
     {

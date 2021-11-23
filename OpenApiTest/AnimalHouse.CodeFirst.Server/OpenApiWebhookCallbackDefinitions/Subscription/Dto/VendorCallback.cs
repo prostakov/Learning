@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using AnimalHouse.CodeFirst.Server.Swagger.Attributes;
 
-namespace AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto
+namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription.Dto
 {
     public class VendorCallback
     {

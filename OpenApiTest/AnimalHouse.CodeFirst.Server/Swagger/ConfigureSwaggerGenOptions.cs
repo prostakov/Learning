@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription;
 using AnimalHouse.CodeFirst.Server.Swagger.Configuration;
 using AnimalHouse.CodeFirst.Server.Swagger.Extensions;
 using AnimalHouse.CodeFirst.Server.Swagger.OperationFilters;
 using AnimalHouse.CodeFirst.Server.Swagger.SchemaFilters;
-using AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;

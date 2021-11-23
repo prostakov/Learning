@@ -1,6 +1,6 @@
 using System;
 
-namespace AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.Dto
+namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription.Dto
 {
     public class SuccessfulUpsertApiResponse
     {

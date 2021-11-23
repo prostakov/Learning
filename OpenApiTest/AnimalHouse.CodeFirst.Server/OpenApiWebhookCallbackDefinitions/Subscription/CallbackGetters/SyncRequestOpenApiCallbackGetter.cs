@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AnimalHouse.CodeFirst.Server.Swagger.WebhookCallbacks;
 using Microsoft.OpenApi.Models;
 
-namespace AnimalHouse.CodeFirst.Server.SwaggerWebhookCallbacks.Subscription.CallbackGetters
+namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription.CallbackGetters
 {
     public class SyncRequestOpenApiCallbackGetter : SubscriptionCallbackGetterBase, IOpenApiCallbackGetter
     {

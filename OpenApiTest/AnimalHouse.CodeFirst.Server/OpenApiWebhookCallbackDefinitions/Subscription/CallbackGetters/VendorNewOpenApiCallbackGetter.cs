@@ -30,8 +30,7 @@ namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscri
                                     Deprecated = false,
                                     Responses = new OpenApiResponses
                                     {
-                                        {"201", OpenApiExtensions.GetResponseBody<SuccessfulUpsertApiResponse>(
-                                            "Your server implementation should return this HTTP status code if the data was received successfully")},
+                                        {"201", OpenApiExtensions.GetResponseBody<SuccessfulUpsertApiResponse>("Successful upsert")},
                                         {"202", OpenApiExtensions.GetStringResponseBody("Acknowledge receipt", contentType: "text/plain", example: "ok")},
                                         {"default", OpenApiExtensions.GetResponseBody<ErrorApiResponse>("Unexpected error")},
                                     },

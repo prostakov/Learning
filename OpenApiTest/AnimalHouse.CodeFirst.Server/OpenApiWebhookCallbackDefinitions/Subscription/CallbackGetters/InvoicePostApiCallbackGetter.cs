@@ -24,14 +24,13 @@ namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscri
                             {
                                 OperationType.Post, new OpenApiOperation
                                 {
-                                    Summary = "Callback initiated when new invoice is being posted from VIC.AI admin panel.",
+                                    Summary = "Callback initiated when new invoice is being created from VIC.AI admin panel.",
                                     RequestBody = GetRequestBody(),
                                     Description = Description,
                                     Deprecated = false,
                                     Responses = new OpenApiResponses
                                     {
-                                        {"201", OpenApiExtensions.GetResponseBody<SuccessfulUpsertApiResponse>(
-                                            "Your server implementation should return this HTTP status code if the data was received successfully")},
+                                        {"201", OpenApiExtensions.GetResponseBody<SuccessfulUpsertApiResponse>("Successful upsert")},
                                         {"202", new OpenApiResponse {Description = "Deferred post, confirmation asynchronous"}},
                                         {"400", OpenApiExtensions.GetResponseBody<ErrorApiResponse>("Invalid invoice data")},
                                         {"default", OpenApiExtensions.GetResponseBody<ErrorApiResponse>("Unexpected error")},

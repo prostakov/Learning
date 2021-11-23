@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscription.Dto;
+using AnimalHouse.CodeFirst.Server.Responses;
 using AnimalHouse.CodeFirst.Server.Swagger.Extensions;
 using AnimalHouse.CodeFirst.Server.Swagger.WebhookCallbacks;
 using Microsoft.OpenApi.Expressions;
@@ -31,10 +32,8 @@ namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscri
                                     {
                                         {"201", OpenApiExtensions.GetResponseBody<SuccessfulUpsertApiResponse>(
                                             "Your server implementation should return this HTTP status code if the data was received successfully")},
-                                        {"4xx", OpenApiExtensions.GetResponseBody<SuccessfulUpsertApiResponse>(
-                                            "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. No retries are attempted.")},
-                                        {"5xx", OpenApiExtensions.GetResponseBody<SuccessfulUpsertApiResponse>(
-                                            "If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. No retries are attempted.")},
+                                        {"202", OpenApiExtensions.GetResponseBody<string>("Acknowledge receipt", contentType: "text/plain", example: "ok")},
+                                        {"default", OpenApiExtensions.GetResponseBody<ErrorApiResponse>("Unexpected error")},
                                     },
                                     Parameters = new List<OpenApiParameter> { RequestIdParameter }
                                 }
@@ -48,7 +47,8 @@ namespace AnimalHouse.CodeFirst.Server.OpenApiWebhookCallbackDefinitions.Subscri
         public HashSet<Type> Types => new()
         {
             typeof(VendorCallback), 
-            typeof(SuccessfulUpsertApiResponse)
+            typeof(SuccessfulUpsertApiResponse),
+            typeof(ErrorApiResponse)
         };
 
         private string Description => 

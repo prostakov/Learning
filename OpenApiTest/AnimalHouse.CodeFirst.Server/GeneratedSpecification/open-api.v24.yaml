@@ -232,18 +232,19 @@ paths:
                     application/json:
                       schema:
                         $ref: '#/components/schemas/SuccessfulUpsertApiResponse'
-                4xx:
-                  description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. No retries are attempted.
+                '202':
+                  description: Acknowledge receipt
+                  content:
+                    text/plain:
+                      schema:
+                        $ref: '#/components/schemas/String'
+                      example: ok
+                default:
+                  description: Unexpected error
                   content:
                     application/json:
                       schema:
-                        $ref: '#/components/schemas/SuccessfulUpsertApiResponse'
-                5xx:
-                  description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. No retries are attempted.
-                  content:
-                    application/json:
-                      schema:
-                        $ref: '#/components/schemas/SuccessfulUpsertApiResponse'
+                        $ref: '#/components/schemas/ErrorApiResponse'
         Post Invoice: { }
         Transfer Invoice: { }
         Sync Request: { }

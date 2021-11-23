@@ -406,22 +406,23 @@
                       }
                     }
                   },
-                  "4xx": {
-                    "description": "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. No retries are attempted.",
+                  "202": {
+                    "description": "Acknowledge receipt",
                     "content": {
-                      "application/json": {
+                      "text/plain": {
                         "schema": {
-                          "$ref": "#/components/schemas/SuccessfulUpsertApiResponse"
-                        }
+                          "$ref": "#/components/schemas/String"
+                        },
+                        "example": "ok"
                       }
                     }
                   },
-                  "5xx": {
-                    "description": "If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. No retries are attempted.",
+                  "default": {
+                    "description": "Unexpected error",
                     "content": {
                       "application/json": {
                         "schema": {
-                          "$ref": "#/components/schemas/SuccessfulUpsertApiResponse"
+                          "$ref": "#/components/schemas/ErrorApiResponse"
                         }
                       }
                     }

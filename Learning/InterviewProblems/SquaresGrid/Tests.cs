@@ -1,9 +1,8 @@
 using Common;
 using FluentAssertions;
-using InterviewProblems.SquaresGrid;
 using NUnit.Framework;
 
-namespace InterviewProblems.NeighboringSquares;
+namespace InterviewProblems.SquaresGrid;
 
 public class Tests : BaseTest
 {

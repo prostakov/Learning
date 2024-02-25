@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Json;
+using System.Text.Json;
 using System.Xml.Serialization;
 
 namespace Serialization
@@ -10,13 +10,8 @@ namespace Serialization
     {
         public static T DeepCopy<T>(this T self)
         {
-            using (var stream = new MemoryStream())
-            {
-                var formatter = new BinaryFormatter();
-                formatter.Serialize(stream, self);
-                stream.Seek(0, SeekOrigin.Begin);
-                return (T) formatter.Deserialize(stream);
-            }
+            var json = JsonSerializer.Serialize(self);
+            return JsonSerializer.Deserialize<T>(json);
         }
 
         public static T DeepCopyXml<T>(this T self)

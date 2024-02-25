@@ -10,9 +10,11 @@ public class SquaresGridSolver(ISquaresGridTraversalStrategy strategy)
     {
         for (var i = 0; i < source.GetLength(0); i++)
         for (var j = 0; j < source.GetLength(1); j++)
+        {
             if (source[i, j] != 0 && source[i, j] != 1)
                 throw new ArgumentException("Grid is not valid");
-
+        }
+        
         return strategy.RunTraverse(source);
     }
 }

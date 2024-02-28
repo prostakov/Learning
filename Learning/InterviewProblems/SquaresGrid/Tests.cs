@@ -4,6 +4,10 @@ using NUnit.Framework;
 
 namespace InterviewProblems.SquaresGrid;
 
+/// <summary>
+/// The problem in principle described by the TechLead:
+/// https://www.youtube.com/watch?v=IWvbPIYQPFM
+/// </summary>
 public class Tests : BaseTest
 {
     private readonly SquaresGridSolver _squaresGridSolver = new(new IterativeSquaresGridTraversalStrategy());

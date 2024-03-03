@@ -7,7 +7,7 @@ namespace InterviewProblems.FactorialWithPrimes;
 /*
  * You are given A boxes kept in a row (1-based indexing) and a number B.
  * The i-th box contains value which is i!+B.
- * How many boxes are there which contains prime number?
+ * How many boxes are there which contain prime number?
  */
 public class Tests : BaseTest
 {

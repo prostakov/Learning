@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Common;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace InterviewProblems.Trilogy._2022.Treasure;
@@ -38,28 +40,34 @@ public class Tests : BaseTest
     [Test]
     public void Test1()
     {
-        var a = new[,]
+        var gems = new List<Gem>
         {
-            { 0, 1 }, 
-            { 0, 10 }
+            new() { Time = 0, BadLuck = 1 }, 
+            new() { Time = 0, BadLuck = 10 }
         };
         var expectedOutput = 0;
-        
-        // TODO
+
+        var (avoided, consumed) = Solution.BadLuck(gems);
+
+        avoided.Should().Be(0);
+        consumed.Should().Be(11);
     }
     
     [Test]
     public void Test2()
     {
-        var a = new[,]
+        var gems = new List<Gem>
         {
-            { 0, 10 }, 
-            { 1, 4 }, 
-            { 1, 3 }, 
-            { 2, 20 },
+            new() { Time = 0, BadLuck = 10 }, 
+            new() { Time = 1, BadLuck = 4 },
+            new() { Time = 1, BadLuck = 3 },
+            new() { Time = 2, BadLuck = 20 }
         };
         var expectedOutput = 30;
+
+        var (avoided, consumed) = Solution.BadLuck(gems);
         
-        // TODO
+        avoided.Should().Be(30);
+        consumed.Should().Be(7);
     }
 }

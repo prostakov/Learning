@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace InterviewProblems.Graph.GraphDiameter;
+namespace InterviewProblems.Graphs.GraphDiameter;
 
 public class Node(int value)
 {

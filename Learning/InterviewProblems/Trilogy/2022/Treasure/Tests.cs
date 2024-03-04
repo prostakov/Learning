@@ -45,7 +45,6 @@ public class Tests : BaseTest
             new() { Time = 0, BadLuck = 1 }, 
             new() { Time = 0, BadLuck = 10 }
         };
-        var expectedOutput = 0;
 
         var (avoided, consumed) = Solution.BadLuck(gems);
 
@@ -63,7 +62,6 @@ public class Tests : BaseTest
             new() { Time = 1, BadLuck = 3 },
             new() { Time = 2, BadLuck = 20 }
         };
-        var expectedOutput = 30;
 
         var (avoided, consumed) = Solution.BadLuck(gems);
         

@@ -1,7 +1,7 @@
 using Common;
 using NUnit.Framework;
 
-namespace InterviewProblems.Trees.FindSimplePaths;
+namespace InterviewProblems.Trilogy._2022.FindSimplePathsInTree;
 
 /*
  * Description:

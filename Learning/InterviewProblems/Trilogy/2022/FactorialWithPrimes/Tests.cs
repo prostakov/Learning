@@ -2,7 +2,7 @@ using Common;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace InterviewProblems.FactorialWithPrimes;
+namespace InterviewProblems.Trilogy._2022.FactorialWithPrimes;
 
 /*
  * You are given A boxes kept in a row (1-based indexing) and a number B.

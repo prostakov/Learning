@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 
-namespace InterviewProblems.FactorialWithPrimes;
+namespace InterviewProblems.Trilogy._2022.FactorialWithPrimes;
 
 public static class FactorialWithPrimesSolver
 {

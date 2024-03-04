@@ -4,6 +4,9 @@ using NUnit.Framework;
 
 namespace InterviewProblems.Graph.GraphDiameter;
 
+/*
+ * https://www.geeksforgeeks.org/longest-path-undirected-tree/amp/
+ */
 public class Tests : BaseTest
 {
     [Test]

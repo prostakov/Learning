@@ -28,11 +28,7 @@ public class SinglyLinkedList
 
     public void Reverse()
     {
-        Node previous = null;
-        Node current = _head;
-        while (current != null) 
-            (previous, current, current.Next) = (current, current.Next, previous);
-        _head = previous;
+        // TODO: Ask interviewee to add implementation
     }
 
     public override string ToString()

@@ -1,0 +1,30 @@
+Standard solution:
+
+public void Reverse()
+{
+    Node prev = null;
+    Node curr = _head;
+    Node next = null;
+
+    while (curr != null)
+    {
+        next = curr.Next;
+        curr.Next = prev;
+        prev = curr;
+        curr = next;
+    }
+
+    _head = prev;
+}
+
+More lean solution:
+
+
+public void Reverse()
+{
+    Node previous = null;
+    Node current = _head;
+    while (current != null) 
+        (previous, current, current.Next) = (current, current.Next, previous);
+    _head = previous;
+}

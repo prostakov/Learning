@@ -10,12 +10,7 @@ public class Node(int value)
 
 public class Graph
 {
-    public List<Node> Nodes { get; }
-
-    public Graph()
-    {
-        Nodes = [];
-    }
+    public List<Node> Nodes { get; } = new();
     
     public Node AddNode(int value)
     {
